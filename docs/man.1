@@ -1,0 +1,76 @@
+NAME
+    cheatshh - A shell script for managing command cheatshheets
+
+SYNOPSIS
+    cheatshh [OPTION]
+
+DESCRIPTION
+    cheatshh provides a command-line interface for managing command cheatshheets. 
+    It allows you to add, edit, and delete commands, as well as create and delete groups of commands.
+
+OPTIONS
+    -a, --add
+        Add a new command to the cheatshheet.
+
+    -e, --edit
+        Edit an existing command in the cheatshheet.
+
+    -dc, --delete
+        Delete a command from the cheatshheet.
+
+    -g, --group
+        Create a new group. 
+
+    -dg, --delete-group
+        Delete a group.
+    
+    -m, --man
+        Display man pages after tldr in the preview.
+
+FILES
+    Cheatshh reads its configurations from 3 files mainly:
+
+    cheats.sh
+        This file is the main source code for the display, addition, deletion, grouping and editing.
+    
+    commands.json
+        This file stores all the commands with their respective description and properties.
+
+    groups.json
+        This file stores all the groups made with their respective descriptions and sub-commands.
+
+
+EXAMPLES
+    To add a new command
+    
+        $ cheatshh -a
+
+    To edit an existing command
+    
+        $ cheatshh -e
+
+    To delete a command
+    
+        $ cheatshh -dc
+
+    To create a new group
+        
+        $ cheatshh -g
+
+    To delete a group
+        
+        $ cheatshh -dg
+
+    To display the man pages in addition with tldr.
+
+        $ cheatshh -m
+
+
+DEPENDENCIES
+    For cheatshh to function properly, make sure you have fzf(fuzzy finder) and whiptail installed through your 
+    package manager.
+
+AUTHOR
+    Cheatshh was written by Anirudh Gupta.
+    Visit <https://github.com/AnirudhG07/cheatshh> for more information.
+
