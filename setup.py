@@ -25,9 +25,33 @@ def post_install():
 
 
 setup(name="cheatshh", version="1.0.0", cmdclass={"install": post_install}, 
-      long_description="An interactice command-line tool to manage your custom cheatshheets.",
+      long_description="""
+# cheatshh
+
+Cheatshh is an interactive CLI meant for managing command line cheatshheets. Now you don't have to remember CLI commands and just refer your cheatshhet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
+
+# Features
+
+- Comprehensive cheatsheets for various command-line utilities and tools.
+- Easy-to-use interface for quickly accessing and executing commands, powered by fuzzy finder(fzf) and whiptail.
+- Customizable cheatshheets and groups to suit your needs.
+- TLDR and MAN pages visible in the preview.
+- Easy to add, edit, delete commands and groups and playing around.
+
+Visit the Github Repository for more details: https://github.com/AnirudhG07/cheatshh
+
+# Version
+1.0.0
+
+## Note:
+- This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.
+- The package is installed in ~/.local/bin/cheatshh, so make sure to add this to your PATH variable.
+
+
+""",
       long_description_content_type="text/markdown",
       keywords=["cheatsheet, cheat, command-line, cli"],
-      install_requires=["fuzzyfinder", "whiptail"]
+      install_requires=["fuzzyfinder", "whiptail"],
+      author="Anirudh Gupta"
 )
 
