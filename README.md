@@ -60,7 +60,7 @@ sudo apt install <package>
 For Windows, you can use your favourite package manager to download the packages,
 
 # Documentation
-Cheatshh is an interactive, easy CLI tool to maintain your custom cheatshheets. You can check our the<a href="https://github.com/AnirudhG07/cheatshh/tree/main/docs" docs </a>to see how to use cheatshh.
+Cheatshh is an interactive, easy CLI tool to maintain your custom cheatshheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/main/docs"> docs </a> to see how to use cheatshh.
 
 # Contributing
 I would love to take contributions from the community! If you have suggestions for new cheatsheets, improvements to existing ones, or bug fixes, please feel free to submit a pull request.
