@@ -24,4 +24,10 @@ def post_install():
     )
 
 
-setup(name="cheatshh", version="1.0.0", cmdclass={"install": post_install})
+setup(name="cheatshh", version="1.0.0", cmdclass={"install": post_install}, 
+      long_description="A command-line tool to manage cheatsheets",
+      long_description_content_type="text/markdown",
+      keywords=["cheatsheet, cheat, command-line, cli"],
+      install_requires=["fuzzyfinder", "whiptail"]
+)
+
