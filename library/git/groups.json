@@ -1,0 +1,35 @@
+{
+    "git":{
+        "description": "Version control system Git. These are some commands you use in often.",
+        "commands":[
+            "git",
+            "lazygit",
+            "git init",
+            "git clone",
+            "git add",
+            "git commit",
+            "git push",
+            "git pull",
+            "git log",
+            "git status",
+            "git log",
+            "git branch",
+            "git checkout",
+            "git merge",
+            "git rebase",
+            "git reset",
+            "git revert",
+            "git stash",
+            "git tag",
+            "git fetch",
+            "git remote",
+            "git diff",
+            "git blame",
+            "git show",
+            "git grep",
+            "git bisect",
+            "git reflog",
+            "git cherry-pick"
+        ]
+    }
+}

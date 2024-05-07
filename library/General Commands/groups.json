@@ -1,0 +1,29 @@
+{
+    "General-Commands":{
+        "description": "Work-flow general commands I use in my terminal.",
+        "commands": [
+            "code",
+            "nvim",
+            "vim",
+            "tmux",
+            "less",
+            "rm",
+            "rmdir",
+            "mkdir",
+            "touch",
+            "mv",
+            "cp",
+            "cat", 
+            "echo",
+            "grep",
+            "find",
+            "ls",
+            "cd",
+            "pwd",
+            "clear",
+            "exit",
+            "whoami",
+            "man"
+            ]
+    }
+}

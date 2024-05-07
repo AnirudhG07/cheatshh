@@ -1,0 +1,28 @@
+{
+    "Terminal-Utilities":{
+        "description": "Tools for terminal you have which you love.",
+        "commands": [
+            "btop",
+            "neofetch",
+            "ncdu",
+            "fdupes",
+            "df",
+            "zoxide",
+            "eza",
+            "fzf",
+            "bat",
+            "wget",
+            "procs",
+            "rip",
+            "gping",
+            "cmus",
+            "hexdump",
+            "objdump",
+            "file",
+            "exiftool",
+            "chmod",
+            "chown",
+            "strings"
+        ]
+    }
+}

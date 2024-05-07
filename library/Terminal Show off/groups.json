@@ -1,0 +1,20 @@
+{
+    "cool things": {
+        "description": "Cool show off things you can always try and chill out with.",
+        "commands": [
+          "cmatrix",
+          "sl",
+          "fortune",
+          "cowsay",
+          "figlet",
+          "toilet",
+          "lolcat",
+          "asciiquarium",
+          "pipes.sh",
+          "hollywood",
+          "edex-ui",
+          "bb",
+          "nyancat"
+        ]
+    }
+}

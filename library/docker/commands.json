@@ -1,0 +1,27 @@
+{
+    "docker":{
+        "description": "Docker is a platform for developers and sysadmins to develop, ship, and run applications. Docker lets you quickly assemble applications from components and eliminates the friction that can come when shipping code. Docker lets you get your code tested and deployed into production as fast as possible.",
+        "commands": [
+            "docker --version",
+            "docker run hello-world",
+            "docker images",
+            "docker ps",
+            "docker ps -a",
+            "docker pull <image-name>",
+            "docker run <image-name>",
+            "docker rmi <image-name>",
+            "docker rm <container-id>",
+            "docker stop <container-id>",
+            "docker start <container-id>",
+            "docker exec -it <container-id> /bin/bash",
+            "docker build -t <image-name> .",
+            "docker push <image-name>",
+            "docker pull <image-name>",
+            "docker tag <image-name> <new-image-name>",
+            "docker login",
+            "docker logout",
+            "docker network ls",
+            "docker network inspect <network-name>"
+        ]
+    }
+}

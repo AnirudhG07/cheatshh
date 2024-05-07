@@ -1,0 +1,15 @@
+{
+    "games":{
+        "description": "Games you can play in the terminal.",
+        "commands": [
+          "ninvaders",
+          "moon-buggy",
+          "nethacks",
+          "pacman4console",
+          "bastet",
+          "greed",
+          "crawl",
+          "bsdgames"
+        ]
+    }
+}
