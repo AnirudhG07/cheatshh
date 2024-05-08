@@ -161,6 +161,68 @@ edit_command(){
             fi
         fi
 } 
+edit_group() {
+    # Get the list of group names
+    group_names=$(jq -r 'keys[]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)
+
+    # Limit the number of group names to display
+    group_names=$(echo "$group_names" | head -n 10 | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
+
+    if [ $(jq -r 'keys | length' /Volumes/Anirudh/Coding/cheatshhh/groups.json) -gt 10 ]; then
+        group_names="$group_names, ..."
+    fi
+
+    while true; do
+        # Ask for the group name
+        group_name=$(whiptail --inputbox "Enter group name to edit: (Press TAB to select Ok/Cancel)\n\nYour Groups:\n$group_names" 16 78 --title "Edit Group" 3>&1 1>&2 2>&3)
+        
+        # Check if the user pressed Cancel or entered an empty string
+        if [ $? -ne 0 ] || [ -z "$group_name" ]; then
+            return
+        fi
+
+        # Check if the group exists in the JSON file
+        if [ "$(jq -r --arg group "$group_name" '.[$group]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)" == "null" ]; then
+            whiptail --msgbox "Group does not exist: $group_name" 8 78 --title "Error" 
+            continue
+        fi
+
+        # Print the original group description
+        original_description=$(jq -r --arg group "$group_name" '.[$group].description' /Volumes/Anirudh/Coding/cheatshhh/groups.json)
+        whiptail --msgbox "Original description: $original_description" 8 78 --title "Original Description"
+
+
+        # Ask what the user wants to edit
+        OPTION=$(whiptail --title "Edit Group" --menu "Choose your option" 15 60 4 \
+        "1" "Edit group name" \
+        "2" "Edit group description"  3>&1 1>&2 2>&3)
+        
+        exitstatus=$?
+        if [ $exitstatus = 0 ]; then
+            case $OPTION in
+            1)
+                # Ask for the new group name
+                new_group_name=$(whiptail --inputbox "Enter new group name:" 8 78 --title "Edit Group Name" 3>&1 1>&2 2>&3)
+                # Update the group name in the JSON file
+                jq --arg group "$group_name" --arg newGroup "$new_group_name" '(.[$group].name = $newGroup)' /Volumes/Anirudh/Coding/cheatshhh/groups.json > temp.json && mv temp.json /Volumes/Anirudh/Coding/cheatshhh/groups.json
+                ;;
+            2)
+                # Ask for the new group description
+                new_group_description=$(whiptail --inputbox "Enter new group description:" 8 78 --title "Edit Group Description" 3>&1 1>&2 2>&3)
+                # Update the group description in the JSON file
+                jq --arg group "$group_name" --arg newDesc "$new_group_description" '(.[$group].description = $newDesc)' /Volumes/Anirudh/Coding/cheatshhh/groups.json > temp.json && mv temp.json /Volumes/Anirudh/Coding/cheatshhh/groups.json
+                ;;
+            esac
+        else
+            echo "You chose Cancel."
+        fi
+
+        # Ask if the user wants to edit another group
+        if ! (whiptail --yesno "Do you want to edit another group?" 8 78 --title "Confirmation"); then
+            break
+        fi
+    done
+}
 
 create_group() {
   group_name=$(whiptail --inputbox "Enter name of the new group:" 8 78 --title "Create Group" 3>&1 1>&2 2>&3)
@@ -229,12 +291,23 @@ create_group() {
 }
 
 delete_group() {
-  group_name=$(whiptail --inputbox "Enter name of the group to delete:" 8 78 --title "Delete Group" 3>&1 1>&2 2>&3)
+    # Get the list of group names
+    group_names=$(jq -r 'keys[]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)
+
+    # Limit the number of group names to display
+    group_names=$(echo "$group_names" | head -n 10 | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
+
+    if [ $(jq -r 'keys | length' /Volumes/Anirudh/Coding/cheatshhh/groups.json) -gt 10 ]; then
+        group_names="$group_names, ..."
+    fi
+
+    # Ask for the group name
+    group_name=$(whiptail --inputbox "Enter name of the group to delete:\n\nYour Groups:\n$group_names" 16 78 --title "Delete Group" 3>&1 1>&2 2>&3)
   
-  exit_status=$?
-  if [ $exit_status = 1 ]; then
-    return
-  fi
+    exit_status=$?
+    if [ $exit_status = 1 ]; then
+        return
+    fi
 
   # Check if the group exists
   if [ "$(jq -r --arg group "$group_name" '.[$group]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)" == "null" ]; then
