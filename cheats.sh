@@ -123,44 +123,56 @@ deletion_command() {
 }
 ### EDITING ###
 edit_command(){
-        while true; do
-            edit_command=$(whiptail --inputbox "Enter command to edit: (Press TAB to select Ok/Cancel)" 8 78 --title "Edit Command" 3>&1 1>&2 2>&3)
-            
-            # Check if command exists in the JSON file
-            if jq --arg cmd "$edit_command" 'has($cmd)' /Volumes/Anirudh/Coding/cheatshhh/commands.json | grep -q false; then
-                whiptail --msgbox "Command not found: $edit_command" 8 78 --title "Error" 
-                continue
-            fi
+  while true; do
+    edit_command=$(whiptail --inputbox "Enter command to edit: (Press TAB to select Ok/Cancel)" 8 78 --title "Edit Command" 3>&1 1>&2 2>&3)
+    
+    # Check if command exists in the JSON file
+    if jq --arg cmd "$edit_command" 'has($cmd)' /Volumes/Anirudh/Coding/cheatshhh/commands.json | grep -q false; then
+      whiptail --msgbox "Command not found: $edit_command" 8 78 --title "Error" 
+      continue
+    fi
 
-            break
-        done
+    OPTION=$(whiptail --title "Edit Command" --menu "Choose your option" 15 60 4 \
+    "1" "Change description" \
+    "2" "Change group"  3>&1 1>&2 2>&3)
+    
+    exit_status=$?
+    if [ $exit_status = 1 ]; then
+      return
+    fi
 
-        current_description=$(jq -r --arg cmd "$edit_command" '.[$cmd].description' /Volumes/Anirudh/Coding/cheatshhh/commands.json)
-        new_description=$(whiptail --title "Edit Command Description" --inputbox "Current description: $current_description\n\nEnter new description for the command: (use '\ n' for new line)" 10 78 3>&1 1>&2 2>&3)
-        jq --arg cmd "$edit_command" --arg desc "$new_description" '(.[$cmd].description) = $desc' /Volumes/Anirudh/Coding/cheatshhh/commands.json > tmp.json && mv tmp.json /Volumes/Anirudh/Coding/cheatshhh/commands.json
+    case $OPTION in
+    1)
+      # Change description
+      current_description=$(jq -r --arg cmd "$edit_command" '.[$cmd].description' /Volumes/Anirudh/Coding/cheatshhh/commands.json)
+      new_description=$(whiptail --title "Edit Command Description" --inputbox "Current description: $current_description\n\nEnter new description for the command: (use '\ n' for new line)" 10 78 3>&1 1>&2 2>&3)
+      jq --arg cmd "$edit_command" --arg desc "$new_description" '(.[$cmd].description) = $desc' /Volumes/Anirudh/Coding/cheatshhh/commands.json > tmp.json && mv tmp.json /Volumes/Anirudh/Coding/cheatshhh/commands.json
+      ;;
+    2)
+      # Change group
+      new_group=$(whiptail --inputbox "Enter the new group for the command: (Press TAB to select Ok/Cancel)" 8 78 --title "Edit Command Group" 3>&1 1>&2 2>&3)
 
-        if (whiptail --yesno "Do you want to change the group for the command?" 8 78 --title "Change Group"); then
-            # Ask the user to enter the new group for the command
-            new_group=$(whiptail --inputbox "Enter the new group for the command: (Press TAB to select Ok/Cancel)" 8 78 --title "Edit Command Group" 3>&1 1>&2 2>&3)
+      # Check if the group exists
+      if [ "$(jq -r --arg group "$new_group" '.[$group]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)" == "null" ]; then
+        whiptail --msgbox "Group does not exist: $new_group" 8 78 --title "Error" 
+        continue
+      fi
 
-            # Check if the group exists
-            if [ "$(jq -r --arg group "$new_group" '.[$group]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)" == "null" ]; then
-                whiptail --msgbox "Group does not exist: $new_group" 8 78 --title "Error" 
-                exit 1
-            fi
+      # Check if the command already exists in the group
+      if jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands | index($cmd)' /Volumes/Anirudh/Coding/cheatshhh/groups.json | grep -q null; then
+        # Update the group of the command in the commands.json file
+        jq --arg cmd "$edit_command" --arg group "$new_group" '(.[$cmd].group) = $group' /Volumes/Anirudh/Coding/cheatshhh/commands.json > temp.json && mv temp.json /Volumes/Anirudh/Coding/cheatshhh/commands.json
+        # Add the command to the new group in the groups.json file
+        jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands += [$cmd]' /Volumes/Anirudh/Coding/cheatshhh/groups.json > temp.json && mv temp.json /Volumes/Anirudh/Coding/cheatshhh/groups.json
+      else
+        whiptail --msgbox "Command already exists in the group! Please recheck the group you want it to add in." 8 78 --title "Error" 
+        continue
+      fi
+      ;;
+    esac
+  done
+}
 
-            # Check if the command already exists in the group
-            if jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands | index($cmd)' /Volumes/Anirudh/Coding/cheatshhh/groups.json | grep -q null; then
-                # Update the group of the command in the commands.json file
-                jq --arg cmd "$edit_command" --arg group "$new_group" '(.[$cmd].group) = $group' /Volumes/Anirudh/Coding/cheatshhh/commands.json > temp.json && mv temp.json /Volumes/Anirudh/Coding/cheatshhh/commands.json
-                # Add the command to the new group in the groups.json file
-                jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands += [$cmd]' /Volumes/Anirudh/Coding/cheatshhh/groups.json > temp.json && mv temp.json /Volumes/Anirudh/Coding/cheatshhh/groups.json
-            else
-                whiptail --msgbox "Command already exists in the group! Please recheck the group you want it to add in." 8 78 --title "Error" 
-                continue
-            fi
-        fi
-} 
 edit_group() {
     # Get the list of group names
     group_names=$(jq -r 'keys[]' /Volumes/Anirudh/Coding/cheatshhh/groups.json)
