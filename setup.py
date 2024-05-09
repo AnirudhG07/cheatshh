@@ -1,9 +1,20 @@
 import os
-
+import shutil
 from setuptools import setup
 
+def install_man_page():
+    source_path = os.path.join('docs', 'man', 'cheatshh.1')
+    dest_path = os.path.join('share', 'man', 'man1', 'cheatshh.1')
+    shutil.copy(source_path, dest_path)
+
+def install_tldr_page():
+    source_path = os.path.join('docs', 'tldr', 'cheatshh.md')
+    dest_path = os.path.join('share', 'tldr', 'pages', 'cheatshh.md')
+    shutil.copy(source_path, dest_path)
 
 def post_install():
+    install_man_page()
+    install_tldr_page()
     # Define the path to ~/.config/cheatshh
     config_dir = os.path.expanduser("~/.config/cheatshh")
 
@@ -37,6 +48,7 @@ Cheatshh is an interactive CLI meant for managing command line cheatshheets. Now
 - Customizable cheatshheets and groups to suit your needs.
 - TLDR and MAN pages visible in the preview.
 - Easy to add, edit, delete commands and groups and playing around.
+- Press Enter on a command to copy it to clipboard and exit.
 
 Visit the Github Repository for more details: https://github.com/AnirudhG07/cheatshh
 
