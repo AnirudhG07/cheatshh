@@ -1,5 +1,3 @@
-cheatshh
-
 Cheatshh - CLI cheatshheet with customized descriptions, tldr and groups, to look into for your reference.
 More information: <https://github.com/AnirudhG07/cheatshh>.
 
@@ -14,6 +12,9 @@ More information: <https://github.com/AnirudhG07/cheatshh>.
 
 - To create a new group
     cheatshh -g
+
+- To edit a group 
+    cheatshh -eg
 
 - To delete a group 
     cheatshh -dg

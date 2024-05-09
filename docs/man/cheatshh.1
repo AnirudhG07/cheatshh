@@ -1,0 +1,100 @@
+NAME
+    cheatshh - A shell script for managing command cheatshheets
+
+SYNOPSIS
+    cheatshh [OPTION]
+    cheatshh -v, --version
+
+DESCRIPTION
+    cheatshh is an interactive command-line interface for managing command line cheatshheets. 
+    It allows you to add, edit, and delete commands, as well as create, edit and delete groups of commands.
+
+OPTIONS
+    -a, --add
+        Add a new command to the cheatshheet.
+
+    -ec, --edit
+        Edit an existing command's description or group in the cheatshheet.
+
+    -dc, --delete
+        Delete a command from the cheatshheet.
+
+    -g, --group
+        Create a new group.
+
+    -dg, --delete-group
+        Delete a group and it's sub commands from commands.json file.
+
+    -eg, --edit-group
+        Edit an existing group's name or description in the cheatsheet.
+
+    -m, --man
+        Display man pages after tldr in the preview.
+
+FILES
+    By default, cheatshh will create a folder in ~/.config/cheatshh where all the files and codes are stored.
+    You can access it and change settings as it suits you.
+
+    Cheatshh reads its configurations from 3 files mainly:
+
+    cheats.sh
+        This file is the main source code for the display, addition, deletion, grouping and editing.
+    
+    commands.json
+        This file stores all the commands with their respective description and properties.
+
+    groups.json
+        This file stores all the groups made with their respective descriptions and sub-commands.
+
+    You can download pre-made groups through the main github page at https://github.com/AnirudhG07/cheatshh.
+    Simply copy paste them into your commands.json and groups.json file to make them visible.
+
+NOTES
+    Cheatshh assumes every command is unique and you cannot have more than one command with the same name.
+
+    Deleting a group will only delete the commands of that group. If a command is common in other groups, then
+    the command will not be deleted from other groups.
+    Deleting a command has optional delete from a particular group or throughout the cheatsheet. 
+
+    Select a group or a command by pressing Enter. Go back or quit the cheatshh by pressing Escape.
+    On selection of a group, you will be able to see the commands present in it with custom set descriptions and
+    tldr page. 
+    On selection of a command, it will be copied to your clipboard automatically, and you will be prompted to exit.
+    
+EXAMPLES
+    To add a new command
+    
+        $ cheatshh -a
+
+    To edit an existing command
+    
+        $ cheatshh -e
+
+    To delete a command
+    
+        $ cheatshh -dc
+
+    To create a new group
+        
+        $ cheatshh -g
+
+    To edit a group
+        
+        $ cheatshh -eg
+
+    To delete a group
+        
+        $ cheatshh -dg
+
+    To display the man pages in addition with tldr.
+
+        $ cheatshh -m
+
+DEPENDENCIES
+    For cheatshh to function properly, make sure you have fzf(fuzzy finder) and whiptail installed through your 
+    package manager.
+
+AUTHOR
+    Cheatshh was written by Anirudh Gupta.
+    Visit <https://github.com/AnirudhG07/cheatshh> for more information.
+
