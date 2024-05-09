@@ -29,7 +29,7 @@ and you are done. Use various options to add, edit and delete commands and group
 ```bash
 git clone https://github.com/AnirudhG07/cheatshh
 ```
-2. Navigate to the project directory(run below if downloaded in home directory
+2. Navigate to the project directory run below if downloaded in home directory
 ```bash
 cd ~/cheatshh
 ```
