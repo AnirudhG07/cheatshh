@@ -43,6 +43,14 @@ python setup.py install
 ```
 Now you should be able to use the tool by running ```cheatshh``` in your terminal. Feel free to raise an issue if any error comes up.
 
+# Libraries and Groups
+You can create custom groups usig-
+```bash
+cheatshh -g
+```
+We also have premade libraries of groups <a href="https://github.com/AnirudhG07/cheatshh/tree/main/library"> here </a> which you can download with the instructions given there itself. <br>
+We welcome you to publish your own libraries for everyone to see.
+
 # Dependencies
 Cheatshh uses the following as its main tools. Ensure that these are pre-installed in your computer.
 - fuzzy finder
