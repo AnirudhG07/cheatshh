@@ -1,0 +1,10 @@
+{
+    "Pypi publish":{
+      "description": "Commands to use in order to publish a python package to pypi.",
+      "commands": [
+        "pip install twine",
+        "python setup.py sdist bdist_wheel",
+        "twine upload dist/*"
+      ]
+    }
+}
