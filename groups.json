@@ -1,8 +1,0 @@
-{
-  "group_init":{
-    "description":"Welcome to your first group. This group contains dummy commands you can see and. Press Enter to see more.\nDon't forget to delete this group using $ cheatshh -dg",
-    "commands":[
-        "your_command_2"
-    ]
-  }
-}
