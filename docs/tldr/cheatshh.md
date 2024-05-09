@@ -1,23 +1,33 @@
-Cheatshh - CLI cheatshheet with customized descriptions, tldr and groups, to look into for your reference.
-More information: <https://github.com/AnirudhG07/cheatshh>.
+# cheatshh
 
-- To add a new command independently or in a group
-    cheatshh -a
+> Cheatshh - CLI cheatshheet with customized descriptions, tldr and groups, to look into for your reference.
+> Press Enter to a command to copy it to your clipboard and exit.
+> More information: <https://github.com/AnirudhG07/cheatshh>.
 
-- To edit an existing command description & possibly to add it in a group
-    cheatshh -e
+- To add a new command independently or in a group:
 
-- To delete a command 
-    cheatshh -dc
+`cheatshh -a`
 
-- To create a new group
-    cheatshh -g
+- To edit an existing command description & possibly to add it in a group:
 
-- To edit a group 
-    cheatshh -eg
+`cheatshh -ec`
 
-- To delete a group 
-    cheatshh -dg
+- To delete a command:
 
-- To see the man pages as well
-    cheatshh -m  
+`cheatshh -dc`
+
+- To create a new group:
+
+`cheatshh -g`
+
+- To edit a group's name or description:
+
+`cheatshh -eg`
+
+- To delete a group:
+
+`cheatshh -dg`
+
+- To see the man pages as well:
+
+`cheatshh -m`
