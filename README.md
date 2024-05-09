@@ -64,8 +64,3 @@ Cheatshh is an interactive, easy CLI tool to maintain your custom cheatshheets. 
 
 # Contributing
 I would love to take contributions from the community! If you have suggestions for new cheatsheets, improvements to existing ones, or bug fixes, please feel free to submit a pull request.
-
-
-
-
-

@@ -1,3 +1,2 @@
-fuzzy finder - (fzf)
-whiptail - (dialog box)
-jq - (json parser)
+fuzzyfiner
+whiptail 
