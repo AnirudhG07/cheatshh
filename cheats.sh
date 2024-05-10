@@ -449,7 +449,7 @@ case "$@" in
   *'-eg'*|*'--edit-group'*)
     edit_group
     ;;
-  *'-dc'*|*'--delete'*)
+  *'-dc'*|*'--delete-command'*)
     deletion_command
     ;;
   *'-g'*|*'--group'*)
@@ -464,13 +464,13 @@ case "$@" in
     echo "    cheatshh [OPTIONS]"
     echo "                                "
     echo "OPTIONS:"
-    echo "  -a, --add          Add a new command"
-    echo "  -ec, --edit-command        Edit an existing command"
-    echo "  -dc, --delete      Delete an existing command"
+    echo "  -a, --add          Add a new command to the cheatshheet"
+    echo "  -ec, --edit-command        Edit an existing command's description or group in the cheatshheet"
+    echo "  -dc, --delete-command      Delete an existing command from the cheatshheet"
     echo "  -g, --group        Create a new group"
-    echo "  -dg, --delete-group Delete an existing group"
-    echo "  -eg, --edit-group Edit an existing group"
-    echo "  -m, --man          Display"
+    echo "  -eg, --edit-group Edit an existing group's name or description in the cheatsheet"
+    echo "  -dg, --delete-group Delete an existing group and it's sub commands from commands.json file"
+    echo "  -m, --man          Display man pages"
     echo " "
     echo "META OPTIONS"
     echo "  -h, --help         Display this help message"
