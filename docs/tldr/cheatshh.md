@@ -1,33 +1,33 @@
 # cheatshh
 
-> Cheatshh - CLI cheatshheet with customized descriptions, tldr and groups, to look into for your reference.
+> CLI cheatsheet with customized descriptions, tldr and groups, to look into for your reference.
 > Press Enter to a command to copy it to your clipboard and exit.
 > More information: <https://github.com/AnirudhG07/cheatshh>.
 
-- Add a new command independently or in a group:
+- [a]dd a new command to the cheatshheet:
 
-`cheatshh -a`
+`cheatshh --add`
 
-- Edit an existing command description & possibly to add it in a group:
+- Edit ([ec]) an existing command's description or group in the cheatshheet:
 
-`cheatshh -ec`
+`cheatshh --edit-command`
 
-- Delete a command:
+- Delete ([dc)] a command from the cheatshheet:
 
-`cheatshh -dc`
+`cheatshh --delete-command`
 
-- Create a new group:
+- Create a new [g]roup:
 
-`cheatshh -g`
+`cheatshh --group`
 
-- Edit a group's name or description:
+- Edit ([eg]) an existing group's name or description in the cheatsheet:
 
-`cheatshh -eg`
+`cheatshh --edit-group`
 
-- Delete a group:
+- Delete ([dg)] a group and it's sub commands from commands.json file:
 
-`cheatshh -dg`
+`cheatshh --delete-group`
 
-- See the man pages as well:
+- Display [m]an pages after tldr in the preview:
 
-`cheatshh -m`
+`cheatshh --man`
