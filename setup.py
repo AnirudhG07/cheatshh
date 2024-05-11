@@ -1,16 +1,19 @@
 import os
-import shutil, subprocess
-from setuptools import setup, find_packages
+import shutil
+import subprocess
+from setuptools import find_packages, setup
 from setuptools.command.install import install
+
 
 class CustomInstallCommand(install):
     def run(self):
         install.run(self)  # Run standard install logic
         post_install()
 
+
 def install_man_page():
-    source_path = os.path.join('docs', 'man', 'cheatshh.1')
-    dest_path = os.path.join('/usr/local/','share', 'man', 'man1', 'cheatshh.1')
+    source_path = os.path.join("docs", "man", "cheatshh.1")
+    dest_path = os.path.join("/usr/local/", "share", "man", "man1", "cheatshh.1")
     os.makedirs(os.path.dirname(dest_path), exist_ok=True)
     try:
         shutil.copy(source_path, dest_path)
@@ -20,25 +23,36 @@ def install_man_page():
 
 def post_install():
     install_man_page()
+    
+    # Get the directory containing setup.py
+    setup_dir = os.path.dirname(os.path.abspath(__file__))
+    
     # Define the path to ~/.config/cheatshh
     config_dir = os.path.expanduser("~/.config/cheatshh")
-
     # Create ~/.config/cheatshh directory if it doesn't exist
     os.makedirs(config_dir, exist_ok=True)
-
+    
+    # Define files to copy with their respective paths
+    files_to_copy = [
+        ("cheats.sh", "cheats.sh"),
+        ("commands.json", "commands.json"),
+        ("groups.json", "groups.json"),
+        ("README.md", "README.md"),
+        ("requirements.txt", "requirements.txt")
+    ]
     # Copy files to ~/.config/cheatshh
-    files_to_copy = ["cheats.sh", "commands.json", "groups.json", "README.md", "requirements.txt"]
-    for file_name in files_to_copy:
-        with open(file_name, "rb") as src:
-            with open(os.path.join(config_dir, file_name), "wb") as dest:
-                dest.write(src.read())
+    for file_name, src_file in files_to_copy:
+        src_path = os.path.join(setup_dir, src_file)
+        dest_path = os.path.join(config_dir, file_name)
+        shutil.copy(src_path, dest_path)
+
 
 def run_cheatshh():
-    subprocess.run(['bash', '~/.config/cheatshh/cheats.sh'])
+    subprocess.run(["bash", "~/.config/cheatshh/cheats.sh"])
 
 
-setup(name="cheatshh", version="1.0.2", cmdclass={"install": CustomInstallCommand}, 
-    long_description="""
+setup(name="cheatshh", version="1.0.2", cmdclass={"install": CustomInstallCommand},
+      long_description="""
 # cheatshh
 
 Cheatshh is an interactive CLI meant for managing command line cheatshheets. Now you don't have to remember CLI commands and just refer your cheatshhet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
@@ -69,9 +83,8 @@ Visit the Github Repository for more details: https://github.com/AnirudhG07/chea
     author="Anirudh Gupta",
     packages=find_packages(),
     entry_points={
-        'console_scripts': [
-            'cheatshh=src.run_cheatshh:main',
+        "console_scripts": [
+            "cheatshh=src.run_cheatshh:main",
         ],
     },
 )
-
