@@ -74,6 +74,9 @@ Visit the Github Repository for more details: https://github.com/AnirudhG07/chea
 - This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.
 - The package is installed in ~/.config/cheatshh directory.
 
+## Bugs fixed in 1.0.3
+- Path configuration for Linux has been fixed.
+- docs has been updated.
 
 """,
     long_description_content_type="text/markdown",
