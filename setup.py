@@ -1,6 +1,6 @@
 import os
 import shutil
-import subprocess
+import subprocess, gzip
 from setuptools import find_packages, setup
 from setuptools.command.install import install
 
@@ -13,12 +13,11 @@ class CustomInstallCommand(install):
 
 def install_man_page():
     source_path = os.path.join("docs", "man", "cheatshh.1")
-    dest_path = os.path.join("/usr/local/", "share", "man", "man1", "cheatshh.1")
-    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
-    try:
-        shutil.copy(source_path, dest_path)
-    except PermissionError:
-        print("Permission denied. Please run this script as root for man pages.")
+    dest_path = os.path.join("/usr/local/", "share", "man", "man1", "cheatshh.1.gz")
+
+    # Compress the man page
+    with open(source_path, 'rb') as src, gzip.open(dest_path, 'wb') as dst:
+        shutil.copyfileobj(src, dst)
 
 
 def post_install():
@@ -51,7 +50,7 @@ def run_cheatshh():
     subprocess.run(["bash", "~/.config/cheatshh/cheats.sh"])
 
 
-setup(name="cheatshh", version="1.0.2", cmdclass={"install": CustomInstallCommand},
+setup(name="cheatshh", version="1.0.3", cmdclass={"install": CustomInstallCommand},
       long_description="""
 # cheatshh
 
@@ -69,7 +68,7 @@ Cheatshh is an interactive CLI meant for managing command line cheatshheets. Now
 Visit the Github Repository for more details: https://github.com/AnirudhG07/cheatshh
 
 # Version
-1.0.2
+1.0.3
 
 ## Note:
 - This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.

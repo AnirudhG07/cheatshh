@@ -483,7 +483,7 @@ case "$@" in
     enter_loop=false
     ;;
   *'-v'*|*'--version'*)
-    echo "cheatshh --version 1.0.2"
+    echo "cheatshh --version 1.0.3"
     enter_loop=false
     ;;
 esac
