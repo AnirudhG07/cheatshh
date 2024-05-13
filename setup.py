@@ -44,7 +44,7 @@ def post_install():
         src_path = os.path.join(setup_dir, src_file)
         dest_path = os.path.join(config_dir, file_name)
         shutil.copy(src_path, dest_path)
-
+    print("Cheatshh installed successfully!")
 
 def run_cheatshh():
     subprocess.run(["bash", "~/.config/cheatshh/cheats.sh"])
