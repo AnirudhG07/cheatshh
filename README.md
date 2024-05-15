@@ -2,6 +2,11 @@
 
 Cheatshh is an interactive CLI meant for managing command line cheatshheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatshhet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
 
+# Preview/Screenshots 
+
+https://github.com/AnirudhG07/cheatshh/assets/146579014/831405bb-aba4-461f-9ca9-e0f75d74155d
+
+
 # Features
 
 - Comprehensive cheatsheets for various command-line utilities and tools.
