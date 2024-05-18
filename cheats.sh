@@ -13,7 +13,17 @@ export NC
 
 display_man=false
 
-# Get the directory of the current script
+# function for displaying group names when needed
+get_group_names() {
+  group_names=$(jq -r 'keys[]' ~/.config/cheatshh/groups.json)
+  group_names=$(echo "$group_names" | head -n 10 | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
+
+  if [ $(jq -r 'keys | length' ~/.config/cheatshh/groups.json) -gt 10 ]; then
+    group_names="$group_names, ..."
+  fi
+
+  echo "$group_names"
+}
 
 # Check for flags
 ### ADDITION ###
@@ -59,7 +69,7 @@ addition(){
 
     # Ask if the command should be added to a group
     if whiptail --yesno "Do you want to add the command to a group?" 8 78 --title "Confirmation"; then
-        group=$(whiptail --inputbox "Enter the name of the group: (Press TAB to select Ok/Cancel)" 8 78 --title "Add to Group" 3>&1 1>&2 2>&3)
+        group=$(whiptail --inputbox "Enter the name of the group: (Press TAB to select Ok/Cancel)\n\nAvailable groups: $(get_group_names)" 12 78 --title "Add to Group" 3>&1 1>&2 2>&3)
         # Check if the group exists
         if [ "$(jq -r --arg group "$group" '.[$group]' ~/.config/cheatshh/groups.json)" != "null" ]; then
           # Add the command to the group
@@ -94,16 +104,15 @@ deletion_command() {
   fi
 
   # Check if the command is in any group
-  if [ "$(jq -r --arg cmd "$cmd_name" '.[$cmd].group' ~/.config/cheatshh/commands.json)" == "null" ]; then
+  if [ "$(jq -r --arg cmd "$cmd_name" '.[$cmd].group' ~/.config/cheatshh/commands.json)" == "no" ]; then
     # If the command is not in any group, ask for confirmation before deleting
     if (whiptail --yesno "Are you sure you want to delete the command: $cmd_name?" 8 78 --title "Confirmation"); then
       # Delete the command
       jq --arg cmd "$cmd_name" 'del(.[$cmd])' ~/.config/cheatshh/commands.json > temp.json && mv temp.json ~/.config/cheatshh/commands.json
     fi
   else
-    # If the command is in a group, ask which group to delete from
-    group_name=$(whiptail --inputbox "Enter name of the group to delete the command from:" 8 78 --title "Delete Command from Group" 3>&1 1>&2 2>&3)
-    
+    # Get the list of group names
+    group_name=$(whiptail --inputbox "Enter name of the group to delete the command from:\n\nAvailable groups: $(get_group_names)" 12 78 --title "Delete Command from Group" 3>&1 1>&2 2>&3)
     exit_status=$?
     if [ $exit_status = 1 ]; then
       return
@@ -147,10 +156,8 @@ edit_command(){
       jq --arg cmd "$edit_command" --arg desc "$new_description" '(.[$cmd].description) = $desc' ~/.config/cheatshh/commands.json > tmp.json && mv tmp.json ~/.config/cheatshh/commands.json
       ;;
     2)
-      # Change group
-      new_group=$(whiptail --inputbox "Enter the new group for the command: (Press TAB to select Ok/Cancel)" 8 78 --title "Edit Command Group" 3>&1 1>&2 2>&3)
 
-      # Check if the group exists
+      new_group=$(whiptail --inputbox "Enter the new group for the command: (Press TAB to select Ok/Cancel)\n\nAvailable groups: $(get_group_names)" 12 78 --title "Edit Command Group" 3>&1 1>&2 2>&3)      # Check if the group exists
       if [ "$(jq -r --arg group "$new_group" '.[$group]' ~/.config/cheatshh/groups.json)" == "null" ]; then
         whiptail --msgbox "Group does not exist: $new_group" 8 78 --title "Error" 
         continue
@@ -301,19 +308,9 @@ create_group() {
 }
 
 delete_group() {
-    # Get the list of group names
-    group_names=$(jq -r 'keys[]' ~/.config/cheatshh/groups.json)
-
-    # Limit the number of group names to display
-    group_names=$(echo "$group_names" | head -n 10 | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
-
-    if [ $(jq -r 'keys | length' ~/.config/cheatshh/groups.json) -gt 10 ]; then
-        group_names="$group_names, ..."
-    fi
-
     # Ask for the group name
-    group_name=$(whiptail --inputbox "Enter name of the group to delete:\n\nYour Groups:\n$group_names" 16 78 --title "Delete Group" 3>&1 1>&2 2>&3)
-  
+    group_name=$(whiptail --inputbox "Enter name of the group to delete:\n\nYour Groups:\n$(get_group_names)" 16 78 --title "Delete Group" 3>&1 1>&2 2>&3)  
+    
     exit_status=$?
     if [ $exit_status = 1 ]; then
         return
