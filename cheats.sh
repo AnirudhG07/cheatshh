@@ -64,10 +64,8 @@ addition(){
         if [ "$(jq -r --arg group "$group" '.[$group]' ~/.config/cheatshh/groups.json)" != "null" ]; then
           # Add the command to the group
           jq --arg group "$group" --arg cmd "$new_command" '.[$group].commands += [$cmd]' ~/.config/cheatshh/groups.json > temp.json && mv temp.json ~/.config/cheatshh/groups.json
-          # Update the group field in the commands.json file
-          jq --arg cmd "$new_command" --arg group "$group" '.[$cmd].group = $group' ~/.config/cheatshh/commands.json > temp.json && mv temp.json ~/.config/cheatshh/commands.json
           # Update the commands.json file
-          jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": $group}' ~/.config/cheatshh/commands.json > temp.json && mv temp.json ~/.config/cheatshh/commands.json
+          jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "yes"}' ~/.config/cheatshh/commands.json > temp.json && mv temp.json ~/.config/cheatshh/commands.json
         else
           whiptail --msgbox "Group does not exist: $group" 8 78 --title "Error" 
           continue
