@@ -50,7 +50,7 @@ def run_cheatshh():
     subprocess.run(["bash", "~/.config/cheatshh/cheats.sh"])
 
 
-setup(name="cheatshh", version="1.0.3", cmdclass={"install": CustomInstallCommand},
+setup(name="cheatshh", version="1.0.4", cmdclass={"install": CustomInstallCommand},
       long_description="""
 # cheatshh
 
@@ -68,15 +68,15 @@ Cheatshh is an interactive CLI meant for managing command line cheatshheets. Now
 Visit the Github Repository for more details: https://github.com/AnirudhG07/cheatshh
 
 # Version
-1.0.3
+1.0.4
 
 ## Note:
 - This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.
 - The package is installed in ~/.config/cheatshh directory.
 
-## Bugs fixed in 1.0.3
+## Bugs fixed in 1.0.4
 - Path configuration for Linux has been fixed.
-- docs has been updated.
+- group names will be displayed whenever asked to enter a group name in option functionalities.
 
 """,
     long_description_content_type="text/markdown",
