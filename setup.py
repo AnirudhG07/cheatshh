@@ -47,8 +47,7 @@ def post_install():
     print("Cheatshh installed successfully!")
 
 def run_cheatshh():
-    subprocess.run(["bash", "~/.config/cheatshh/cheats.sh"])
-
+    subprocess.run(["bash", os.path.expanduser("~/.config/cheatshh/cheats.sh")])
 
 setup(name="cheatshh", version="1.0.4", cmdclass={"install": CustomInstallCommand},
       long_description="""
