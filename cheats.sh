@@ -366,7 +366,7 @@ display_preview() {
         fi
         echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
         echo -e \"${CYAN}TLDR:${NC}\";
-        echo \"Please wait while the man page is being searched for...\";
+        echo \"Please wait while the TLDR page is being searched for...\";
         tldr \$item --color;
         if $display_man; then
             echo -e \"\n${CYAN}MAN PAGE: ${NC}\n\";
@@ -409,7 +409,7 @@ display_group_commands() {
     fi
     echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
     echo -e \"${CYAN}TLDR:${NC}\n\";
-    echo \"Please wait while the tldr page is being searched for...\";
+    echo \"Please wait while the TLDR page is being searched for...\";
     tldr \$cmd --color;
     if $display_man; then
         echo -e \"\n${CYAN}MAN PAGE: ${NC}\n\";
