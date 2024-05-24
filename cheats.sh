@@ -130,22 +130,32 @@ deletion_command() {
 }
 ### EDITING ###
 edit_command(){
-  while true; do
+  exit_status=$?
+  if [ $exit_status = 1 ]; then
+    return
+  fi
+  exit_status=0
+  while [ $exit_status -eq 0 ]; do
     edit_command=$(whiptail --inputbox "Enter command to edit: (Press TAB to select Ok/Cancel)" 8 78 --title "Edit Command" 3>&1 1>&2 2>&3)
-    
-    # Check if command exists in the JSON file
-    if jq --arg cmd "$edit_command" 'has($cmd)' ~/.config/cheatshh/commands.json | grep -q false; then
-      whiptail --msgbox "Command not found: $edit_command" 8 78 --title "Error" 
-      continue
-    fi
-
-    OPTION=$(whiptail --title "Edit Command" --menu "Choose your option" 15 60 4 \
-    "1" "Change description" \
-    "2" "Change group"  3>&1 1>&2 2>&3)
-    
     exit_status=$?
-    if [ $exit_status = 1 ]; then
-      return
+
+    # Check if command exists in the JSON file
+    if [ $exit_status -eq 0 ]; then
+      # Check if command exists in the JSON file
+      if jq --arg cmd "$edit_command" 'has($cmd)' ~/.config/cheatshh/commands.json | grep -q false; then
+        whiptail --msgbox "Command not found: $edit_command" 8 78 --title "Error" 
+        continue
+      fi
+
+      OPTION=$(whiptail --title "Edit Command" --menu "Choose your option" 15 60 4 \
+      "1" "Change description" \
+      "2" "Change group"  3>&1 1>&2 2>&3)
+      exit_status=$?
+
+      # Check if the Cancel button was pressed
+      if [ $exit_status -ne 0 ]; then
+        continue
+      fi
     fi
 
     case $OPTION in
@@ -153,7 +163,12 @@ edit_command(){
       # Change description
       current_description=$(jq -r --arg cmd "$edit_command" '.[$cmd].description' ~/.config/cheatshh/commands.json)
       new_description=$(whiptail --title "Edit Command Description" --inputbox "Current description: $current_description\n\nEnter new description for the command: (use '\ n' for new line)" 10 78 3>&1 1>&2 2>&3)
-      jq --arg cmd "$edit_command" --arg desc "$new_description" '(.[$cmd].description) = $desc' ~/.config/cheatshh/commands.json > tmp.json && mv tmp.json ~/.config/cheatshh/commands.json
+      exit_status=$?
+
+      # Update the description in the JSON file only if the OK button was pressed
+      if [ $exit_status -eq 0 ]; then
+        jq --arg cmd "$edit_command" --arg desc "$new_description" '(.[$cmd].description) = $desc' ~/.config/cheatshh/commands.json > tmp.json && mv tmp.json ~/.config/cheatshh/commands.json
+      fi
       ;;
     2)
 
