@@ -13,6 +13,7 @@ https://github.com/AnirudhG07/cheatshh/assets/146579014/831405bb-aba4-461f-9ca9-
 - Customizable cheatshheets and groups to suit your needs.
 - TLDR and MAN pages visible in the preview.
 - Easy to add, edit, delete commands & groups and play around.
+- Bookmark commands to access them outside of group as well.
 
 # Installation
 
@@ -88,6 +89,10 @@ cheatshh -g
 We also have premade libraries of groups <a href="https://github.com/AnirudhG07/cheatshh/tree/main/library"> here </a> which you can download with the instructions given there itself. <br>
 We welcome you to publish your own libraries for everyone to see.
 
+# Bookmarking
+Bookmarking let's you save your command in the main preview despite them being present in a group.<br>
+You can bookmark a command by pressing Enter and selecting `Bookmark`. Now you don't need to find it in a group and access it in the main preview.<br>You can always remove Bookmark of a command by pressing Enter and selecting `Remove Bookmark`.
+
 # Dependencies
 
 Cheatshh uses the following as its main tools. Ensure that these are pre-installed in your computer.
@@ -150,4 +155,8 @@ Cheatshh is an interactive, easy CLI tool to maintain your custom cheatshheets. 
 
 # Contributing
 
-I would love to take contributions from the community! If you have suggestions for new cheatsheets, improvements to existing ones, or bug fixes, please feel free to submit a pull request.
+I would love to take contributions from the community! If you have suggestions for new cheatsheets, improvements to existing ones, or bug fixes, please feel free to submit a pull request. 
+### Contribution Guidelines
+1) For contribution of a library, it should have a suitable folder name(max 3 words) with commands.json and groups.json, similar to the format in other libraries. The `group` field should be "yes", `bookmark` field should be "no".
+2) For bug fixes, it will be great if you could discuss first in Issues before directly putting a PR. 
+3) It would be great to publish this in other package managers. So I would request help for publishing to different package managers.

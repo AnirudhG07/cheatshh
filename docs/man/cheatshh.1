@@ -9,6 +9,7 @@ SYNOPSIS
 DESCRIPTION
     cheatshh is an interactive command-line interface for managing command line cheatshheets. 
     It allows you to add, edit, and delete commands, as well as create, edit and delete groups of commands.
+    You can bookmark commands to easily access them in main preview.
 
 OPTIONS
     -a, --add
@@ -36,6 +37,9 @@ FILES
     By default, cheatshh will create a folder in ~/.config/cheatshh where all the files and codes are stored.
     You can access it and change settings as it suits you.
 
+    Cheatshh contains two previews pages, the main preview and the group preview. The non-bookmarked commands
+    will appear in/outside groups but bookmarked commands will appear in both places.
+
     Cheatshh reads its configurations from 3 files mainly:
 
     cheats.sh
@@ -61,6 +65,10 @@ NOTES
     On selection of a group, you will be able to see the commands present in it with custom set descriptions and
     tldr page. 
     On selection of a command, it will be copied to your clipboard automatically, and you will be prompted to exit.
+    
+    Bookmarking: You can bookmark commands by pressing enter and selecting `Bookmark` in(out)side groups such that
+    they will be appear in the main preview even if they were present in a group.
+    Hence they could be easily accessed within and outside it's group. You can always remove bookmark of some command.
     
 EXAMPLES
     To add a new command
@@ -93,7 +101,7 @@ EXAMPLES
 
 DEPENDENCIES
     For cheatshh to function properly, make sure you have fzf(fuzzy finder) and whiptail installed through your 
-    package manager.
+    package manager. 
 
 AUTHOR
     Cheatshh was written by Anirudh Gupta.
