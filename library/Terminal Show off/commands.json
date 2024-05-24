@@ -1,68 +1,80 @@
 {
-        "cmatrix":{
-            "description": "Matrix style terminal effects. So cool!",
-            "alias": "no",
-            "group": "yes"
-        },
-        "sl":{
-            "description": "Train passing through terminal",
-            "alias": "no",
-            "group": "yes"
-        },
-        "fortune":{
-            "description": "Random fortune or a funny quote",
-            "alias": "no",
-            "group": "yes"
-        },
-        "cowsay":{
-            "description": "Cow says something you want it to say. Try out various styles of cow",
-            "alias": "no",
-            "group": "yes"
-        },
-        "figlet":{
-            "description": "ASCII text banner",
-            "alias": "no",
-            "group": "yes"
-        },
-        "toilet":{
-            "description": "ASCII art in terminal",
-            "alias": "no",
-            "group": "yes"
-        },
-        "lolcat":{
-            "description": "Colorful painter in terminal by a cat.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "asciiquarium":{
-            "description": "Miss fishing? Well you can sure see fishes in terminal getting fished.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "pipes.sh":{
-            "description": "Pipes in terminal",
-            "alias": "no",
-            "group": "yes"
-        },
-        "hollywood":{
-            "description": "Hollywood style effects in terminal. Makes you a pro instantly!",
-            "alias": "no",
-            "group": "yes"
-        },
-        "edex-ui":{
-            "description": "A cross-platform, customizable science fiction terminal emulator with advanced monitoring & touchscreen support. Make an alias to run the software.",
-            "alias": "yes",
-            "group": "yes"
-        },
-        "bb": {
-            "description": "Runs an ASCII art demo with music.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "nyancat": {
-            "description": "Shows an animated ASCII Nyan Cat.",
-            "alias": "no",
-            "group": "yes"
-        }
-
+  "cmatrix": {
+    "description": "Matrix style terminal effects. So cool!",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "sl": {
+    "description": "Train passing through terminal",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "fortune": {
+    "description": "Random fortune or a funny quote",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "cowsay": {
+    "description": "Cow says something you want it to say. Try out various styles of cow",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "figlet": {
+    "description": "ASCII text banner",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "toilet": {
+    "description": "ASCII art in terminal",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "lolcat": {
+    "description": "Colorful painter in terminal by a cat.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "asciiquarium": {
+    "description": "Miss fishing? Well you can sure see fishes in terminal getting fished.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "pipes.sh": {
+    "description": "Pipes in terminal",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "hollywood": {
+    "description": "Hollywood style effects in terminal. Makes you a pro instantly!",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "edex-ui": {
+    "description": "A cross-platform, customizable science fiction terminal emulator with advanced monitoring & touchscreen support. Make an alias to run the software.",
+    "alias": "yes",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "bb": {
+    "description": "Runs an ASCII art demo with music.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "nyancat": {
+    "description": "Shows an animated ASCII Nyan Cat.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  }
 }

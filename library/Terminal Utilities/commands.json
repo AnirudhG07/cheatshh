@@ -1,107 +1,128 @@
 {
-    "btop":{
-        "description": "A better top command. It is a task manager. ",
-        "alias": "no",
-        "group": "yes"
-    },
-    "neofetch":{
-        "description": "A command line system information tool. It displays information about your system next to an image, your operating system logo, or any ASCII file of your choice.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "ncdu":{
-        "description": "A disk usage analyzer with an ncurses interface.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "fdupes":{
-        "description": "A program for identifying or deleting duplicate files residing within specified directories.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "df":{
-        "description": "A command-line utility for reporting file system disk space usage.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "zoxide":{
-        "description": "A faster way to navigate your filesystem. It acts as replacement for cd command.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "eza":{
-        "description": "A simple and fast command-line file manager. It is a replacement for ls command.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "fzf":{
-        "description": "A command-line fuzzy finder. It is used to search and open files. It is AMAZING once setup properly with key bindings and previews.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "bat":{
-        "description": "A cat clone with wings. It is used to display file contents with syntax highlighting.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "wget":{
-        "description": "A command-line utility for downloading files from the web.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "procs":{
-        "description": "A modern replacement for ps written in Rust.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "rip":{
-        "description": "You use rip instead of rm. You can recover files deleted by rip. Although later you can permanent delete too.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "gping":{
-        "description": "A ping tool with a graph.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "cmus":{
-        "description": "A small, fast and powerful console music player for Unix-like operating systems.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "hexdump":{
-        "description": "A command-line utility that displays the contents of a file in hexadecimal, decimal, octal, or ASCII format.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "objdump":{
-        "description": "Display information from object files. Mainly wanna use this for binary files like `objdump -d <file>`",
-        "alias": "no",
-        "group": "yes"
-    },
-    "file":{
-        "description": "Determine file type and more information which is a must when reverse engineering binary files.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "exiftool":{
-        "description": "Read meta information in files. It is very handy.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "chmod":{
-        "description": "Change file permissions. You can use chmod +x <file> to make it executable.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "chown":{
-        "description": "Change file owner and group.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "strings":{
-        "description": "Print the strings of printable characters in files. It is very useful for reverse engineering.",
-        "alias": "no",
-        "group": "yes"
-    }
+  "btop": {
+    "description": "A better top command. It is a task manager. ",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "neofetch": {
+    "description": "A command line system information tool. It displays information about your system next to an image, your operating system logo, or any ASCII file of your choice.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "ncdu": {
+    "description": "A disk usage analyzer with an ncurses interface.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "fdupes": {
+    "description": "A program for identifying or deleting duplicate files residing within specified directories.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "df": {
+    "description": "A command-line utility for reporting file system disk space usage.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "zoxide": {
+    "description": "A faster way to navigate your filesystem. It acts as replacement for cd command.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "eza": {
+    "description": "A simple and fast command-line file manager. It is a replacement for ls command.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "fzf": {
+    "description": "A command-line fuzzy finder. It is used to search and open files. It is AMAZING once setup properly with key bindings and previews.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "bat": {
+    "description": "A cat clone with wings. It is used to display file contents with syntax highlighting.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "wget": {
+    "description": "A command-line utility for downloading files from the web.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "procs": {
+    "description": "A modern replacement for ps written in Rust.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "rip": {
+    "description": "You use rip instead of rm. You can recover files deleted by rip. Although later you can permanent delete too.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "gping": {
+    "description": "A ping tool with a graph.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "cmus": {
+    "description": "A small, fast and powerful console music player for Unix-like operating systems.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "hexdump": {
+    "description": "A command-line utility that displays the contents of a file in hexadecimal, decimal, octal, or ASCII format.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "objdump": {
+    "description": "Display information from object files. Mainly wanna use this for binary files like `objdump -d <file>`",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "file": {
+    "description": "Determine file type and more information which is a must when reverse engineering binary files.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "exiftool": {
+    "description": "Read meta information in files. It is very handy.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "chmod": {
+    "description": "Change file permissions. You can use chmod +x <file> to make it executable.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "chown": {
+    "description": "Change file owner and group.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "strings": {
+    "description": "Print the strings of printable characters in files. It is very useful for reverse engineering.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  }
 }

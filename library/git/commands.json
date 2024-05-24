@@ -1,137 +1,164 @@
 {
-    "git": {
-        "description": "The stupid content tracker",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git init": {
-        "description": "Create an empty Git repository or reinitialize an existing one",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git clone": {
-        "description": "Clone a repository into a new directory",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git add": {
-        "description": "Add file contents to the index",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git commit": {
-        "description": "Record changes to the repository",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git push": {
-        "description": "Update remote refs along with associated objects",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git pull": {
-        "description": "Fetch from and integrate with another repository or a local branch",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git log": {
-        "description": "Show commit logs",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git status": {
-        "description": "Show the working tree status",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git branch": {
-        "description": "List, create, or delete branches",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git checkout": {
-        "description": "Switch branches or restore working tree files",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git merge": {
-        "description": "Join two or more development histories together",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git rebase": {
-        "description": "Reapply commits on top of another base tip",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git reset": {
-        "description": "Reset current HEAD to the specified state",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git revert": {
-        "description": "Revert some existing commits",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git stash": {
-        "description": "Stash the changes in a dirty working directory away",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git tag": {
-        "description": "Create, list, delete or verify a tag object signed with GPG",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git fetch": {
-        "description": "Download objects and refs from another repository",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git remote": {
-        "description": "Manage set of tracked repositories",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git diff": {
-        "description": "Show changes between commits, commit and working tree, etc",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git blame": {
-        "description": "Show what revision and author last modified each line of a file",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git show": {
-        "description": "Show various types of objects",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git grep": {
-        "description": "Print lines matching a pattern",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git bisect": {
-        "description": "Use binary search to find the commit that introduced a bug",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git reflog": {
-        "description": "Manage reflog information",
-        "alias": "no",
-        "group": "yes"
-      },
-      "git cherry-pick": {
-        "description": "Apply the changes introduced by some existing commits",
-        "alias": "no",
-        "group": "yes"
-      },
-      "lazygit":{ 
-        "description": "Simple terminal UI for git commands. You use this for git no matter what!",
-        "alias": "no",
-        "group": "no"
-      }
+  "git": {
+    "description": "The stupid content tracker",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git init": {
+    "description": "Create an empty Git repository or reinitialize an existing one",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git clone": {
+    "description": "Clone a repository into a new directory",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git add": {
+    "description": "Add file contents to the index",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git commit": {
+    "description": "Record changes to the repository",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git push": {
+    "description": "Update remote refs along with associated objects",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git pull": {
+    "description": "Fetch from and integrate with another repository or a local branch",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git log": {
+    "description": "Show commit logs",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git status": {
+    "description": "Show the working tree status",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git branch": {
+    "description": "List, create, or delete branches",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git checkout": {
+    "description": "Switch branches or restore working tree files",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git merge": {
+    "description": "Join two or more development histories together",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git rebase": {
+    "description": "Reapply commits on top of another base tip",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git reset": {
+    "description": "Reset current HEAD to the specified state",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git revert": {
+    "description": "Revert some existing commits",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git stash": {
+    "description": "Stash the changes in a dirty working directory away",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git tag": {
+    "description": "Create, list, delete or verify a tag object signed with GPG",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git fetch": {
+    "description": "Download objects and refs from another repository",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git remote": {
+    "description": "Manage set of tracked repositories",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git diff": {
+    "description": "Show changes between commits, commit and working tree, etc",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git blame": {
+    "description": "Show what revision and author last modified each line of a file",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git show": {
+    "description": "Show various types of objects",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git grep": {
+    "description": "Print lines matching a pattern",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git bisect": {
+    "description": "Use binary search to find the commit that introduced a bug",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git reflog": {
+    "description": "Manage reflog information",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "git cherry-pick": {
+    "description": "Apply the changes introduced by some existing commits",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "lazygit": {
+    "description": "Simple terminal UI for git commands. You use this for git no matter what!",
+    "alias": "no",
+    "group": "no",
+    "bookmark": "no"
+  }
 }

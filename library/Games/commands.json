@@ -1,42 +1,50 @@
 {
-        "ninvaders":{
-            "description": "Space Invaders. It's actually pretty hard you know",
-            "alias": "no",
-            "group": "yes"
-        },
-        "moon-buggy":{
-            "description": "Moon Buggy game in terminal. You don't wanna crash on moon, cause then there is no way back home!",
-            "alias": "no",
-            "group": "yes"
-        },
-        "nethack":{
-            "description": "Just like Dungeons and Dragons, but of the terminal world. It's a classic.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "pacman4console": {
-            "description": "Console version of the popular arcade game Pac-Man.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "bsdgames": {
-            "description": "Collection of classic text games like tetris, snake, pong, hangman, and adventure.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "greed": {
-            "description": "A game of consumption and survival on a grid.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "bastet": {
-            "description": "A notoriously difficult version of Tetris.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "crawl": {
-            "description": "Dungeon Crawl Stone Soup, a fun and highly addictive roguelike game.",
-            "alias": "no",
-            "group": "yes"
-        }
+  "ninvaders": {
+    "description": "Space Invaders. It's actually pretty hard you know",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "moon-buggy": {
+    "description": "Moon Buggy game in terminal. You don't wanna crash on moon, cause then there is no way back home!",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "nethack": {
+    "description": "Just like Dungeons and Dragons, but of the terminal world. It's a classic.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "pacman4console": {
+    "description": "Console version of the popular arcade game Pac-Man.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "bsdgames": {
+    "description": "Collection of classic text games like tetris, snake, pong, hangman, and adventure.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "greed": {
+    "description": "A game of consumption and survival on a grid.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "bastet": {
+    "description": "A notoriously difficult version of Tetris.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "crawl": {
+    "description": "Dungeon Crawl Stone Soup, a fun and highly addictive roguelike game.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  }
 }

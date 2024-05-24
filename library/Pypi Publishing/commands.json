@@ -1,17 +1,20 @@
 {
-    "pip install twine": {
+  "pip install twine": {
     "description": " STEP 0: Install twine for uploading packages to pypi if you don't have.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
   "python setup.py sdist bdist_wheel": {
     "description": "STEP 1: Create a source distribution.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
   "twine upload dist/*": {
     "description": "STEP 2: Upload the distribution to PyPI. Add API token or username and password, if asked.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   }
 }

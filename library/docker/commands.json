@@ -1,103 +1,122 @@
 {
-    
-        "docker":{
-            "description": "docker is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker --version":{
-            "description": "Display the version of Docker that is installed on the system.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker run hello-world":{
-            "description": "This command is used to verify that Docker is installed correctly and that you can run containers.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker images":{
-            "description": "This command is used to list all of the images that are stored on the system.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker ps":{
-            "description": "This command is used to list all of the containers that are currently running on the system.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker ps -a":{
-            "description": "This command is used to list all of the containers that are currently running on the system, including those that are stopped.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker run <image-name>" :{
-            "description": "This command is used to run a container from an image.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker rmi <image-name>" :{
-            "description": "This command is used to remove an image from the system.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker rm <container-id>" :{
-            "description": "This command is used to remove a container of id `container-id` from the system.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker stop <container-id>" :{
-            "description": "This command is used to stop a container of id `container-id`.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker start <container-id>" :{
-            "description": "This command is used to start a container of id `container-id`.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker exec -it <container-id> /bin/bash" :{
-            "description": "This command is used to open a shell inside a running container of id `container-id`.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker build -t <image-name> ." :{
-            "description": "This command is used to build an image from a Dockerfile. The -t flag is used to tag the image with a name.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker push <image-name>" :{
-            "description": "This command is used to push an image to a registry such as Docker Hub.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker pull <image-name>" :{
-            "description": "This command is used to pull an image from a registry such as Docker Hub.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker tag <image-name> <new-image-name>" :{
-            "description": "This command is used to tag an image with a new name.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker login" :{
-            "description": "This command is used to log in to a Docker registry such as Docker Hub.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker logout" :{
-            "description": "This command is used to log out of a Docker registry such as Docker Hub.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker network ls" :{
-            "description": "This command is used to list all of the networks that are available on the system.",
-            "alias": "no",
-            "group": "yes"
-        },
-        "docker network inspect <network-name>":{ 
-            "description": "This command is used to inspect a network of name `network-name`.",
-            "alias": "no",
-            "group": "yes"
-        }
+  "docker": {
+    "description": "docker is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker --version": {
+    "description": "Display the version of Docker that is installed on the system.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker run hello-world": {
+    "description": "This command is used to verify that Docker is installed correctly and that you can run containers.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker images": {
+    "description": "This command is used to list all of the images that are stored on the system.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker ps": {
+    "description": "This command is used to list all of the containers that are currently running on the system.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker ps -a": {
+    "description": "This command is used to list all of the containers that are currently running on the system, including those that are stopped.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker run <image-name>": {
+    "description": "This command is used to run a container from an image.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker rmi <image-name>": {
+    "description": "This command is used to remove an image from the system.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker rm <container-id>": {
+    "description": "This command is used to remove a container of id `container-id` from the system.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker stop <container-id>": {
+    "description": "This command is used to stop a container of id `container-id`.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker start <container-id>": {
+    "description": "This command is used to start a container of id `container-id`.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker exec -it <container-id> /bin/bash": {
+    "description": "This command is used to open a shell inside a running container of id `container-id`.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker build -t <image-name> .": {
+    "description": "This command is used to build an image from a Dockerfile. The -t flag is used to tag the image with a name.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker push <image-name>": {
+    "description": "This command is used to push an image to a registry such as Docker Hub.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker pull <image-name>": {
+    "description": "This command is used to pull an image from a registry such as Docker Hub.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker tag <image-name> <new-image-name>": {
+    "description": "This command is used to tag an image with a new name.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker login": {
+    "description": "This command is used to log in to a Docker registry such as Docker Hub.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker logout": {
+    "description": "This command is used to log out of a Docker registry such as Docker Hub.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker network ls": {
+    "description": "This command is used to list all of the networks that are available on the system.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "docker network inspect <network-name>": {
+    "description": "This command is used to inspect a network of name `network-name`.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  }
 }

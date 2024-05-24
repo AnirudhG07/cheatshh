@@ -1,108 +1,128 @@
 {
-"code":{
+  "code": {
     "description": "Open Visual Studio Code. You can use code . for current directory.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "nvim":{
+  "nvim": {
     "description": "Open Neovim. You can use nvim <file> for opening file in neovim. Or nvim to enter neovim.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "tmux":{
+  "tmux": {
     "description": "Terminal multiplexer. Create tmux session with $ tmux new -s <session_name>. Use $ tmux attach -t <session_name> to attach to session.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "less":{
+  "less": {
     "description": "Less is more. It's a pager. You can use less <file> to open file in less. ",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "rm":{
+  "rm": {
     "description": "Remove files. rm *.<type> will delete all kinds of files. You can use rip instead of rm.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "rmdir":{
+  "rmdir": {
     "description": "Remove directory. rmdir <dir> will remove empty directory. For non-empty directory, use rm -rf <dir>.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "mkdir":{
+  "mkdir": {
     "description": "Make directory. mkdir <dir> will create a directory with name dir.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "touch":{
+  "touch": {
     "description": "Create a file. touch <file> will create a file with name file.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "mv":{
+  "mv": {
     "description": "Move files. mv <file> <dir> will move file to directory. mv <file1> <file2> will rename file1 to file2.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "cp":{
+  "cp": {
     "description": "Copy files. cp <file> <dir> will copy file to directory.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "cat":{
+  "cat": {
     "description": "Cat stands for concatenate. Cat <file> will show file contents. cat <file1> <file2> will concatenate file1 and file2.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-  "echo":{
+  "echo": {
     "description": "Echo. echo <string> will print string. echo 'string' > <file> will write string to file.",
     "alias": "no",
-    "group": "yes"
+    "group": "yes",
+    "bookmark": "no"
   },
-    "grep":{
-        "description": "Grep. grep <pattern> <file> will search for pattern in file.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "find":{
-        "description": "Find. find <dir> -name <file> will search for file in directory.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "ls":{
-        "description": "List. ls will list files in directory. ls -a will list all files including hidden files.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "cd":{
-        "description": "Change directory. cd <dir> will change directory to dir. cd .. will go to parent directory.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "pwd":{
-        "description": "Print working directory. pwd will show current directory.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "clear":{
-        "description": "Clear screen. clear will clear the terminal screen. It basically jumps down but you can always scroll up to see previous commands and work.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "exit":{
-        "description": "Exit. exit will close the terminal.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "whoami":{
-        "description": "Who am I. whoami will show the current user.",
-        "alias": "no",
-        "group": "yes"
-    },
-    "man":{
-        "description": "Manual for each command. It provides a detailed view of the command.",
-        "alias": "no",
-        "group": "yes"
-    }
-
+  "grep": {
+    "description": "Grep. grep <pattern> <file> will search for pattern in file.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "find": {
+    "description": "Find. find <dir> -name <file> will search for file in directory.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "ls": {
+    "description": "List. ls will list files in directory. ls -a will list all files including hidden files.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "cd": {
+    "description": "Change directory. cd <dir> will change directory to dir. cd .. will go to parent directory.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "pwd": {
+    "description": "Print working directory. pwd will show current directory.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "clear": {
+    "description": "Clear screen. clear will clear the terminal screen. It basically jumps down but you can always scroll up to see previous commands and work.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "exit": {
+    "description": "Exit. exit will close the terminal.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "whoami": {
+    "description": "Who am I. whoami will show the current user.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  },
+  "man": {
+    "description": "Manual for each command. It provides a detailed view of the command.",
+    "alias": "no",
+    "group": "yes",
+    "bookmark": "no"
+  }
 }
