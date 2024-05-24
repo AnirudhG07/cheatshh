@@ -343,11 +343,11 @@ delete_group() {
 }
 
 display_preview() {
-  commands=$(jq -r 'to_entries[] | select(.value.group == "no") | .key' ~/.config/cheatshh/commands.json)
-  groups=$(jq -r 'keys[]' ~/.config/cheatshh/groups.json)
+  commands=$(jq -r 'to_entries[] | select(.value.bookmark == "yes" or (.value.bookmark == "no" and .value.group == "no")) | .key' ~/.config/cheatshh/commands.json)  groups=$(jq -r 'keys[]' ~/.config/cheatshh/groups.json)
   selected=$(echo -e "$commands\n$groups" | fzf --preview "
     item={};
     alias=\$(jq -r --arg item \"\$item\" '.[\$item].alias' ~/.config/cheatshh/commands.json);
+    bookmark=\$(jq -r --arg item \"\$item\" '.[\$item].bookmark' ~/.config/cheatshh/commands.json);
     echo -e \"${CYAN}COMMAND/GROUP: ${YELLOW}\$item${NC}\n\";
 
     if jq -e --arg item \"\$item\" '.[\$item]' ~/.config/cheatshh/groups.json > /dev/null; then
@@ -365,6 +365,7 @@ display_preview() {
             echo -e \"${YELLOW}\$about${NC}\n\";
         fi
         echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
+        echo -e \"${CYAN}BOOKMARK:${NC} \$bookmark\n\";
         echo -e \"${CYAN}TLDR:${NC}\";
         echo \"Please wait while the TLDR page is being searched for...\";
         tldr \$item --color;
@@ -402,12 +403,14 @@ display_group_commands() {
     cmd={};
     about=\$(jq -r --arg cmd \"\$cmd\" '.[\$cmd].description' ~/.config/cheatshh/commands.json);
     alias=\$(jq -r --arg cmd \"\$cmd\" '.[\$cmd].alias' ~/.config/cheatshh/commands.json);
+    bookmark=\$(jq -r --arg item \"\$cmd\" '.[\$item].bookmark' ~/.config/cheatshh/commands.json);
     echo -e \"${CYAN}COMMAND: ${YELLOW}\$cmd${NC}\n\";
     echo -e \"${CYAN}ABOUT:${NC}\";
     if [ -n \"\$about\" ]; then
         echo -e \"${YELLOW}\$about${NC}\n\";
     fi
     echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
+    echo -e \"${CYAN}BOOKMARK:${NC} \$bookmark\n\";
     echo -e \"${CYAN}TLDR:${NC}\n\";
     echo \"Please wait while the TLDR page is being searched for...\";
     tldr \$cmd --color;
