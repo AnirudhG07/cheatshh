@@ -219,11 +219,6 @@ edit_group() {
             continue
         fi
 
-        # Print the original group description
-        original_description=$(jq -r --arg group "$group_name" '.[$group].description' ~/.config/cheatshh/groups.json)
-        whiptail --msgbox "Original description: $original_description" 8 78 --title "Original Description"
-
-
         # Ask what the user wants to edit
         OPTION=$(whiptail --title "Edit Group" --menu "Choose your option" 15 60 4 \
         "1" "Edit group name" \
@@ -236,13 +231,22 @@ edit_group() {
                 # Ask for the new group name
                 new_group_name=$(whiptail --inputbox "Enter new group name:" 8 78 --title "Edit Group Name" 3>&1 1>&2 2>&3)
                 # Update the group name in the JSON file
-                jq --arg group "$group_name" --arg newGroup "$new_group_name" '(.[$group].name = $newGroup)' ~/.config/cheatshh/groups.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/groups.json
+                jq --arg group "$group_name" --arg newGroup "$new_group_name" '
+                  .[$newGroup] = .[$group] | 
+                  del(.[$group])' ~/.config/cheatshh/groups.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/groups.json
                 ;;
             2)
+                # Get the current group description
+                current_group_description=$(jq -r --arg grp "$group_name" '.[$grp].description' ~/.config/cheatshh/groups.json)
+
                 # Ask for the new group description
-                new_group_description=$(whiptail --inputbox "Enter new group description:" 8 78 --title "Edit Group Description" 3>&1 1>&2 2>&3)
-                # Update the group description in the JSON file
-                jq --arg group "$group_name" --arg newDesc "$new_group_description" '(.[$group].description = $newDesc)' ~/.config/cheatshh/groups.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/groups.json
+                new_group_description=$(whiptail --title "Edit Group Description" --inputbox "Current description: $current_group_description\n\nEnter new description for the group: (use '\ n' for new line)" 10 78 3>&1 1>&2 2>&3)
+
+                exitstatus=$?
+                if [ $exitstatus = 0 ]; then
+                    # Update the group description in the JSON file
+                    jq --arg group "$group_name" --arg newDesc "$new_group_description" '(.[$group].description = $newDesc)' ~/.config/cheatshh/groups.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/groups.json
+                fi
                 ;;
             esac
         else
