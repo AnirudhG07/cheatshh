@@ -371,8 +371,14 @@ display_preview() {
 
     if jq -e --arg item \"\$item\" '.[\$item]' ~/.config/cheatshh/groups.json > /dev/null; then
         about=\$(jq -r --arg item \"\$item\" '.[\$item].description' ~/.config/cheatshh/groups.json);
+        
         echo -e \"${CYAN}GROUP DESCRIPTION:${NC}\";
         if [ -n \"\$about\" ]; then
+            # fix length of preview to fit within terminal width
+            terminal_width=\$(tput cols)
+            preview_window_width=\$((terminal_width * 70 / 100))
+            text_width=\$((preview_window_width - 4))
+            about=\$(echo \"\$about\" | fold -w \$text_width)
             echo -e \"${YELLOW}\$about${NC}\n\";
         fi
         group_commands=\$(jq -r --arg item \"\$item\" '.[\$item].commands[]' ~/.config/cheatshh/groups.json);
@@ -381,6 +387,11 @@ display_preview() {
         about=\$(jq -r --arg item \"\$item\" '.[\$item].description' ~/.config/cheatshh/commands.json);
         echo -e \"${CYAN}ABOUT:${NC}\";
         if [ -n \"\$about\" ]; then
+            # fix length of preview to fit within terminal width
+            terminal_width=\$(tput cols)
+            preview_window_width=\$((terminal_width * 70 / 100))
+            text_width=\$((preview_window_width - 4))
+            about=\$(echo \"\$about\" | fold -w \$text_width)
             echo -e \"${YELLOW}\$about${NC}\n\";
         fi
         echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
@@ -459,6 +470,11 @@ display_group_commands() {
     echo -e \"${CYAN}COMMAND: ${YELLOW}\$cmd${NC}\n\";
     echo -e \"${CYAN}ABOUT:${NC}\";
     if [ -n \"\$about\" ]; then
+        # fix length of preview to fit within terminal width
+        terminal_width=\$(tput cols)
+        preview_window_width=\$((terminal_width * 70 / 100))
+        text_width=\$((preview_window_width - 4))
+        about=\$(echo \"\$about\" | fold -w \$text_width)
         echo -e \"${YELLOW}\$about${NC}\n\";
     fi
     echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
@@ -562,6 +578,7 @@ case "$@" in
     echo "For exampe: cheatshh -a -m OR cheatshh -m"
     echo "2) Press Enter to select a command, which will be copied to your clipboard and exited         "
     echo "For more information, please visit: https://github.com/AnirudhG07/cheatshhh"
+    echo "3) Bookmark a command by selecting it and pressing 'Bookmark' in the preview window."
     enter_loop=false
     ;;
   *'-v'*|*'--version'*)
