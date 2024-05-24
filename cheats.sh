@@ -384,18 +384,51 @@ display_preview() {
     # Return a special exit status to indicate that the user wants to exit
     return 1
   fi
+
   # If a command was selected run it
   if [ -n "$selected" ]; then
-      if jq -e --arg item "$selected" '.[$item]' ~/.config/cheatshh/groups.json > /dev/null; then
+    if jq -e --arg item "$selected" '.[$item]' ~/.config/cheatshh/groups.json > /dev/null; then
         display_group_commands "$selected"
+    else
+    bookmark=$(jq -r --arg cmd "$selected" '.[$cmd].bookmark' ~/.config/cheatshh/commands.json)
+      if [ "$bookmark" = "yes" ]; then
+          # If it is, set the bookmark option to "Remove Bookmark"
+          bookmark_option="Remove Bookmark"
       else
-        printf "%s" "$selected" | pbcopy
-        if (whiptail --title "Exit Confirmation" --yesno "Are you sure you want to exit? The command has been copied." 8 78); then
-            exit
-        fi
+          # If it isn't, set the bookmark option to "Bookmark"
+          bookmark_option="Bookmark"
       fi
+      OPTION=$(whiptail --title "Command Menu" --menu "What would you like to do? The selected command is copied to clipboard." 15 60 4 \
+      "1" "Exit" \
+      "2" "Stay" \
+      "3" "$bookmark_option" 3>&1 1>&2 2>&3)
+
+      exitstatus=$?
+      printf "%s" "$selected" | pbcopy
+      if [ $exitstatus = 0 ]; then
+          case $OPTION in
+          "1")
+              exit
+              ;;
+          "2")
+              # Go back to cheatshh preview
+              ;;
+          "3")
+              # Check if the command is already bookmarked
+              bookmark=$(jq -r --arg cmd "$selected" '.[$cmd].bookmark' ~/.config/cheatshh/commands.json)
+              if [ "$bookmark" = "yes" ]; then
+                  # If it is, remove the bookmark
+                  jq --arg cmd "$selected" '.[$cmd].bookmark = "no"' ~/.config/cheatshh/commands.json > /tmp/commands.json && mv /tmp/commands.json ~/.config/cheatshh/commands.json
+              else
+                  # If it isn't, add the bookmark
+                  jq --arg cmd "$selected" '.[$cmd].bookmark = "yes"' ~/.config/cheatshh/commands.json > /tmp/commands.json && mv /tmp/commands.json ~/.config/cheatshh/commands.json
+              fi
+              ;;
+          esac
+      fi
+    fi
   fi
-}
+  }
 display_group_commands() {
   group=$1
   commands=$(jq -r --arg group "$group" '.[$group].commands[]' ~/.config/cheatshh/groups.json)
@@ -425,10 +458,42 @@ display_group_commands() {
   # If a command was selected run it
 
   if [ -n "$selected" ]; then
-      printf "%s" "$selected" | pbcopy
-      if (whiptail --title "Exit Confirmation" --yesno "Are you sure you want to exit? The command has been copied." 8 78); then
-          exit
-      fi
+    bookmark=$(jq -r --arg cmd "$selected" '.[$cmd].bookmark' ~/.config/cheatshh/commands.json)
+    if [ "$bookmark" = "yes" ]; then
+        # If it is, set the bookmark option to "Remove Bookmark"
+        bookmark_option="Remove Bookmark"
+    else
+        # If it isn't, set the bookmark option to "Bookmark"
+        bookmark_option="Bookmark"
+    fi
+    OPTION=$(whiptail --title "Command Menu" --menu "What would you like to do? The selected command is copied to clipboard." 15 60 4 \
+    "1" "Exit" \
+    "2" "Stay" \
+    "3" "$bookmark_option" 3>&1 1>&2 2>&3)
+
+    exitstatus=$?
+    printf "%s" "$selected" | pbcopy
+    if [ $exitstatus = 0 ]; then
+        case $OPTION in
+        "1")
+            exit
+            ;;
+        "2")
+            # Go back to cheatshh preview
+            ;;
+        "3")
+            # Check if the command is already bookmarked
+            bookmark=$(jq -r --arg cmd "$selected" '.[$cmd].bookmark' ~/.config/cheatshh/commands.json)
+            if [ "$bookmark" = "yes" ]; then
+                # If it is, remove the bookmark
+                jq --arg cmd "$selected" '.[$cmd].bookmark = "no"' ~/.config/cheatshh/commands.json > /tmp/commands.json && mv /tmp/commands.json ~/.config/cheatshh/commands.json
+            else
+                # If it isn't, add the bookmark
+                jq --arg cmd "$selected" '.[$cmd].bookmark = "yes"' ~/.config/cheatshh/commands.json > /tmp/commands.json && mv /tmp/commands.json ~/.config/cheatshh/commands.json
+            fi
+            ;;
+        esac
+    fi
   fi
 }
 
