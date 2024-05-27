@@ -75,14 +75,14 @@ addition(){
           # Add the command to the group
           jq --arg group "$group" --arg cmd "$new_command" '.[$group].commands += [$cmd]' ~/.config/cheatshh/groups.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/groups.json
           # Update the commands.json file
-          jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "yes"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
+          jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "yes", "bookmark": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
         else
           whiptail --msgbox "Group does not exist: $group" 8 78 --title "Error" 
           continue
         fi
     else
         # If not added to a group, update the commands.json file with group as "no"
-        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
+        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
     fi
 
     break
@@ -306,7 +306,7 @@ create_group() {
         is_alias="yes"
         description=$(whiptail --inputbox "Enter description for the command: (use '\ n' for new line)" 8 78 --title "Add Command Description" 3>&1 1>&2 2>&3)
         # Update the commands.json file
-        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
+        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
       else
         is_alias="no"
         # Check if tldr page for the command exists
@@ -319,7 +319,7 @@ create_group() {
         fi
         description=$(whiptail --inputbox "Enter description for the command: (use '\ n' for new line)" 8 78 --title "Add Command Description" 3>&1 1>&2 2>&3)
         # Update the commands.json file
-        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
+        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' ~/.config/cheatshh/commands.json > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json ~/.config/cheatshh/commands.json
       fi
     break
     done
