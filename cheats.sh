@@ -534,29 +534,7 @@ display_group_commands() {
 
 enter_loop=true
 
-case "$@" in
-  *'-m'*|*'--man'*)
-    display_man=true
-    ;;
-  *'-a'*|*'--add'*)
-    addition
-    ;;
-  *'-ec'*|*'--edit-command'*)
-    edit_command
-    ;;
-  *'-eg'*|*'--edit-group'*)
-    edit_group
-    ;;
-  *'-dc'*|*'--delete-command'*)
-    deletion_command
-    ;;
-  *'-g'*|*'--group'*)
-    create_group
-    ;;
-  *'-dg'*|*'--delete-group'*)
-    delete_group
-    ;;
-  *'-h'*|*'--help'*)
+help_text(){
     echo "cheatshh - A cheatshheet scripted by you for you to help you remember commands and their usage."
     echo "Usage:"
     echo "    cheatshh [OPTIONS]"
@@ -579,12 +557,45 @@ case "$@" in
     echo "2) Press Enter to select a command, which will be copied to your clipboard and exited         "
     echo "For more information, please visit: https://github.com/AnirudhG07/cheatshhh"
     echo "3) Bookmark a command by selecting it and pressing 'Bookmark' in the preview window."
-    enter_loop=false
+}
+
+case "$@" in
+  *'-m'*|*'--man'*)
+    display_man=true
+    ;;
+  *'-a'*|*'--add'*)
+    addition
+    ;;
+  *'-ec'*|*'--edit-command'*)
+    edit_command
+    ;;
+  *'-eg'*|*'--edit-group'*)
+    edit_group
+    ;;
+  *'-dc'*|*'--delete-command'*)
+    deletion_command
+    ;;
+  *'-g'*|*'--group'*)
+    create_group
+    ;;
+  *'-dg'*|*'--delete-group'*)
+    delete_group
     ;;
   *'-v'*|*'--version'*)
     echo "cheatshh --version 1.0.5"
     enter_loop=false
     ;;
+  *'-h'*|*'--help'*)
+    help_text
+    enter_loop=false
+    ;;
+  *)
+      if [ $# -gt 0 ]; then
+          echo "Invalid option."
+          help_text
+          enter_loop=false
+      fi
+      ;;
 esac
 
 # Check the flag before entering the loop
