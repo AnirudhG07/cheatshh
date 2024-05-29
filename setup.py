@@ -85,6 +85,7 @@ Visit the Github Repository for more details: https://github.com/AnirudhG07/chea
     url="https://github.com/AnirudhG07/cheatshh",
     author="Anirudh Gupta",
     packages=find_packages(),
+    include_package_data=True, 
     entry_points={
         "console_scripts": [
             "cheatshh=src.run_cheatshh:main",
