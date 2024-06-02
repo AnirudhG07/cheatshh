@@ -1,6 +1,6 @@
 # cheatshh ![Static Badge](https://img.shields.io/badge/version-1.0.5-blue)
 
-Cheatshh is an interactive CLI meant for managing command line cheatshheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatshhet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
+Cheatshh is an interactive CLI meant for managing command line cheatsheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
 
 # Preview/Screenshots 
 
@@ -10,7 +10,7 @@ https://github.com/AnirudhG07/cheatshh/assets/146579014/831405bb-aba4-461f-9ca9-
 
 - Comprehensive cheatsheets for various command-line utilities and tools.
 - Easy-to-use interface for quickly accessing and executing commands, powered by fuzzy finder(fzf) and whiptail.
-- Customizable cheatshheets and groups to suit your needs.
+- Customizable cheatsheets and groups to suit your needs.
 - TLDR and MAN pages visible in the preview.
 - Easy to add, edit, delete commands & groups and play around.
 - Bookmark commands to access them outside of group as well.
@@ -151,7 +151,7 @@ Note: If you are using some other shell like fish or any similar other, configur
 
 # Documentation
 
-Cheatshh is an interactive, easy CLI tool to maintain your custom cheatshheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.5/docs"> docs </a> to see how to use cheatshh.
+Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.5/docs"> docs </a> to see how to use cheatshh.
 
 # Contributing
 

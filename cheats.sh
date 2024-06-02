@@ -535,14 +535,14 @@ display_group_commands() {
 enter_loop=true
 
 help_text(){
-    echo "cheatshh - A cheatshheet scripted by you for you to help you remember commands and their usage."
+    echo "cheatshh - A cheatsheet scripted by you for you to help you remember commands and their usage."
     echo "Usage:"
     echo "    cheatshh [OPTIONS]"
     echo "                                "
     echo "OPTIONS:"
-    echo "  -a, --add          Add a new command to the cheatshheet"
-    echo "  -ec, --edit-command        Edit an existing command's description or group in the cheatshheet"
-    echo "  -dc, --delete-command      Delete an existing command from the cheatshheet"
+    echo "  -a, --add          Add a new command to the cheatsheet"
+    echo "  -ec, --edit-command        Edit an existing command's description or group in the cheatsheet"
+    echo "  -dc, --delete-command      Delete an existing command from the cheatsheet"
     echo "  -g, --group        Create a new group"
     echo "  -eg, --edit-group Edit an existing group's name or description in the cheatsheet"
     echo "  -dg, --delete-group Delete an existing group and it's sub commands from commands.json file"

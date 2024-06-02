@@ -53,13 +53,13 @@ setup(name="cheatshh", version="1.0.5", cmdclass={"install": CustomInstallComman
       long_description="""
 # cheatshh
 
-Cheatshh is an interactive CLI meant for managing command line cheatshheets. Now you don't have to remember CLI commands and just refer your cheatshhet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
+Cheatshh is an interactive CLI meant for managing command line cheatsheets. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
 
 # Features
 
 - Comprehensive cheatsheets for various command-line utilities and tools.
 - Easy-to-use interface for quickly accessing and executing commands, powered by fuzzy finder(fzf) and whiptail.
-- Customizable cheatshheets and groups to suit your needs.
+- Customizable cheatsheets and groups to suit your needs.
 - TLDR and MAN pages visible in the preview.
 - Easy to add, edit, delete commands and groups and playing around.
 - Press Enter on a command to copy it to clipboard and exit.
@@ -74,9 +74,11 @@ Visit the Github Repository for more details: https://github.com/AnirudhG07/chea
 - This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.
 - The package is installed in ~/.config/cheatshh directory.
 
-## Bugs fixed in 1.0.5
-- Path configuration for Linux has been fixed.
-- group names will be displayed whenever asked to enter a group name in option functionalities.
+## New Features:
+- Now you can bookmark commands and view them in main preview despite being in a group.
+
+## Bugs Fixed:
+- Edit command and group bugs fixed.
 
 """,
     long_description_content_type="text/markdown",
@@ -91,4 +93,15 @@ Visit the Github Repository for more details: https://github.com/AnirudhG07/chea
             "cheatshh=src.run_cheatshh:main",
         ],
     },
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "License :: Apache License 2.0",
+        "Programming Language :: Shell",
+        "Programming Language :: Python :: >= 3.9",
+        "Operating System :: Unix",
+        "Operating System :: MacOS",
+
+    ],
 )
+    
