@@ -582,7 +582,7 @@ case "$@" in
     delete_group
     ;;
   *'-v'*|*'--version'*)
-    echo "cheatshh --version 1.0.5"
+    echo "cheatshh --version 1.0.6"
     enter_loop=false
     ;;
   *'-h'*|*'--help'*)

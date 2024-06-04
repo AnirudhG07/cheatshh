@@ -1,0 +1,34 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "cheatshh"
+version = "1.0.6"
+description = "Interactive CLI for managing command line cheatsheets, written in shell script."
+authors = ["Anirudh Gupta"]
+readme = "Pypi_README.md"
+classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: System :: Shells",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS",
+]
+homepage = "https://github.com/AnirudhG07/cheatshh"
+keywords=["cheatsheet", "cheat", "command-line", "CLI", "shell-script"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fuzzyfinder = "^2.0.0"
+whiptail = "^0.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+cheatshh = "cheatshh.main:main"

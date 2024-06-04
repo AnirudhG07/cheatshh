@@ -1,4 +1,4 @@
-# cheatshh ![Static Badge](https://img.shields.io/badge/version-1.0.5-blue)
+# cheatshh ![Static Badge](https://img.shields.io/badge/version-1.0.6-blue)
 
 Cheatshh is an interactive CLI meant for managing command line cheatsheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
 
@@ -61,10 +61,18 @@ cd ~/cheatshh
 pip install -r requirements.txt
 ```
 
-4. Run the `setup.py` code to set cheatshh
+4. (optional) Make sure you have `poetry` installed which will be required to build the project. If not you can run either of the below commands-
+```bash
+pip install poetry
+# OR
+curl -sSL https://install.python-poetry.org | python -
+```
+This will download `peotry`. Now you can proceed to the next step.
+
+5. Run the below code to set cheatshh
 
 ```bash
-python setup.py install
+pip install .
 ```
 
 Now you should be able to use the tool by running `cheatshh` in your terminal. Feel free to raise an issue if any error comes up.
@@ -151,7 +159,7 @@ Note: If you are using some other shell like fish or any similar other, configur
 
 # Documentation
 
-Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.5/docs"> docs </a> to see how to use cheatshh.
+Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.6/docs"> docs </a> to see how to use cheatshh.
 
 # Contributing
 
