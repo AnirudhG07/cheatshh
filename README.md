@@ -140,6 +140,27 @@ sudo apt install <package>
 
 For Windows, you can use your favourite package manager or download from their website itself.
 
+# Saving cheatshh
+When you have configured your cheatshh, you would definitely want to save them. If you want to use cheatshh in some different machine without rewriting again(cause that's a lot of trouble). Here's how you can save it.
+1. Make a repository by the name `Your_handle/cheatshh` or any other name. You can also add it to your repo where you are storing your dot files.
+2. You can use `stow` command to configure everything in an instant. Here's the layout of the directory if you will use stow-
+   
+```markdown
+cheatshh
+└─── .config
+       └── cheatshh
+            ├── cheats.sh
+            ├── commands.json
+            ├── groups.json
+            └── any/other/file
+```
+
+Now you can simply download this directory, run `stow cheatshh`, this will setup your cheatshh in the `.config/cheatshh` as it should be.<br>
+OR you can manually set it up, in that case you don't need the above tree, you can simply use have the last level of tree inside cheatshh directory. 
+<br>
+
+Don't forget to make `setup.sh` executable.
+
 # Trouble-shooting
 
 1. If permission denial error shows up, run the same command using sudo. You will have to provide password in this case.
@@ -173,7 +194,7 @@ source ~/.zshrc   # For Zsh
 
 This should add the path in your `shell-rc` file and you should be able to run.<br>
 Note: If you are using some other shell like fish or any similar other, configure the settings accordingly. Using Fish is not recommended for this tool.
-
+ 
 # Documentation
 
 Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.6/docs"> docs </a> to see how to use cheatshh.
