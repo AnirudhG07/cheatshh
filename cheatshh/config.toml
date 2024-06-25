@@ -9,12 +9,12 @@
     # Automatically display man pages in preview without using the -m flag
     man_pages = false # Default
 
-    ## Location of storage of commands.json & groups.json
+    ## Location of storage of commands.json, groups.json & config.toml
     ### PLEASE NOTE: cheats.sh will remain in ~/.config/cheatshh. Do not change it's PATH
-    cheatshh_json = "~/.config/cheatshh" # Default
+    cheatshh_home = "~/.config/cheatshh" # Default
 
 [color_scheme]
-# # Define color codes, please use the color codes mentioned below(make sure they are supported by your terminal
+## Define color codes, please use the color codes mentioned below(make sure they are supported by your terminal
 # CYAN='\\033[0;36m'
 # YELLOW='\\033[0;33m'
 # RED='\\033[0;31m'
