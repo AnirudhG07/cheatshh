@@ -19,6 +19,8 @@ display_group_number=$(getConfigValue "settings" "display_group_number")
 cheatshh_home=$(getConfigValue "settings" "cheatshh_home")
 cheatshh_json="${cheatshh_home/#\~/$HOME}"
 
+notes=$(getConfigValue "settings" "notes")
+
 title_color=$(getConfigValue "color_scheme" "title_color")
 about_color=$(getConfigValue "color_scheme" "about_color")
 
@@ -65,11 +67,11 @@ addition(){
         description=$(whiptail --inputbox "Enter description for the command: (use '\ n' for new line)" 8 78 --title "Add Command Description" 3>&1 1>&2 2>&3)
       else
         is_alias="no"
-        # Check if tldr page for the command exists
-        if ! tldr $new_command --color > /dev/null 2>&1; then
+        # Check if $notes page for the command exists
+        if ! $notes $new_command --color > /dev/null 2>&1; then
           # Check if man page for the command exists
           if ! man $new_command > /dev/null 2>&1; then
-            whiptail --msgbox "Error: Neither man page nor tldr exists for the command: $new_command\nPlease add it as an alias." 8 78 --title "Error" 
+            whiptail --msgbox "Error: Neither man page nor $notes exists for the command: $new_command\nPlease add it as an alias." 8 78 --title "Error" 
             continue
           fi
         fi
@@ -318,11 +320,11 @@ create_group() {
         jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
       else
         is_alias="no"
-        # Check if tldr page for the command exists
-        if ! tldr $new_command --color > /dev/null 2>&1; then
+        # Check if $notes page for the command exists
+        if ! $notes $new_command --color > /dev/null 2>&1; then
           # Check if man page for the command exists
           if ! man $new_command > /dev/null 2>&1; then
-            whiptail --msgbox "Neither man page nor tldr exists for the command: $new_command" 8 78 --title "Error" 
+            whiptail --msgbox "Neither man page nor $notes exists for the command: $new_command" 8 78 --title "Error" 
             continue
           fi
         fi
@@ -405,9 +407,9 @@ display_preview() {
         fi
         echo -e \"${title_color}ALIAS:${NC} \$alias\n\";
         echo -e \"${title_color}BOOKMARK:${NC} \$bookmark\n\";
-        echo -e \"${title_color}TLDR:${NC}\";
-        echo \"Please wait while the TLDR page is being searched for...\";
-        tldr \$item --color;
+        echo -e \"${title_color}$(echo "$notes" | tr '[:lower:]' '[:upper:]'):${NC}\";
+        echo \"Please wait while the $(echo "$notes" | tr '[:lower:]' '[:upper:]') page is being searched for...\";
+        $notes \$item --color;
         if $display_man; then
             echo -e \"\n${title_color}MAN PAGE: ${NC}\n\";
             echo \"Please wait while the MAN page is being searched for...\";
@@ -488,9 +490,9 @@ display_group_commands() {
     fi
     echo -e \"${title_color}ALIAS:${NC} \$alias\n\";
     echo -e \"${title_color}BOOKMARK:${NC} \$bookmark\n\";
-    echo -e \"${title_color}TLDR:${NC}\n\";
-    echo \"Please wait while the TLDR page is being searched for...\";
-    tldr \$cmd --color;
+    echo -e \"${title_color}$(echo "$notes" | tr '[:lower:]' '[:upper:]'):${NC}\n\";
+    echo \"Please wait while the $(echo "$notes" | tr '[:lower:]' '[:upper:]') page is being searched for...\";
+    $notes \$cmd --color;
     if $display_man; then
         echo -e \"\n${title_color}MAN PAGE: ${NC}\n\";
         echo \"Please wait while the MAN page is being searched for...\";
@@ -561,11 +563,11 @@ help_text(){
     echo "  -h, --help         Display this help message"
     echo "  -v, --version      Display the version of cheatshh"
     echo "                                "
-    echo "Note: 1) Add -m to display the man pages of the commands in addition to tldr."
-    echo "For exampe: cheatshh -a -m OR cheatshh -m"
+    echo "Note: 1) Add -m to display the man pages of the commands in addition to tldr(or anyother)."
     echo "2) Press Enter to select a command, which will be copied to your clipboard and exited         "
-    echo "For more information, please visit: https://github.com/AnirudhG07/cheatshhh"
     echo "3) Bookmark a command by selecting it and pressing 'Bookmark' in the preview window."
+    echo "4) To change minor configuration, edit the ~/.config/cheatshh/config.toml file."
+    echo "For more information, please visit: https://github.com/AnirudhG07/cheatshhh"
 }
 
 case "$@" in
@@ -591,7 +593,7 @@ case "$@" in
     delete_group
     ;;
   *'-v'*|*'--version'*)
-    echo "cheatshh --version 1.0.6"
+    echo "cheatshh --version 1.0.7"
     enter_loop=false
     ;;
   *'-h'*|*'--help'*)
