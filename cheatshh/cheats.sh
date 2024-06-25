@@ -1,24 +1,32 @@
 #!/bin/bash
 
-# Define color codes
-CYAN='\033[0;36m'
-YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
-RED='\033[0;31m' # Red
-
-# Export color codes
-export CYAN
-export YELLOW
 export NC
 
-display_man=false
+## Read from config.toml
+getConfigValue() {
+    local section=$1
+    local key=$2
+    local config_file="/Volumes/Anirudh/Projects/cheatshh/cheatshh/config.toml"
+
+    # Use awk to parse the config file for the section and key, then print the value
+    yq ".$section.$key" "$config_file"
+
+}
+copy_command=$(getConfigValue "settings" "copy_command")
+display_man=$(getConfigValue "settings" "man_pages")
+display_group_number=$(getConfigValue "settings" "display_group_number")
+cheatshh_json=$(getConfigValue "settings" "cheatshh_json")
+
+title_color=$(getConfigValue "color_scheme" "title_color")
+about_color=$(getConfigValue "color_scheme" "about_color")
 
 # function for displaying group names when needed
 get_group_names() {
   group_names=$(jq -r 'keys[]' ~/.config/cheatshh/groups.json)
-  group_names=$(echo "$group_names" | head -n 10 | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
+  group_names=$(echo "$group_names" | head -n $(display_group_number) | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
 
-  if [ $(jq -r 'keys | length' ~/.config/cheatshh/groups.json) -gt 10 ]; then
+  if [ $(jq -r 'keys | length' ~/.config/cheatshh/groups.json) -gt $(display_group_number) ]; then
     group_names="$group_names, ..."
   fi
 
@@ -367,40 +375,40 @@ display_preview() {
     item={};
     alias=\$(jq -r --arg item \"\$item\" '.[\$item].alias' ~/.config/cheatshh/commands.json);
     bookmark=\$(jq -r --arg item \"\$item\" '.[\$item].bookmark' ~/.config/cheatshh/commands.json);
-    echo -e \"${CYAN}COMMAND/GROUP: ${YELLOW}\$item${NC}\n\";
+    echo -e \"${title_color}COMMAND/GROUP: ${about_color}\$item${NC}\n\";
 
     if jq -e --arg item \"\$item\" '.[\$item]' ~/.config/cheatshh/groups.json > /dev/null; then
         about=\$(jq -r --arg item \"\$item\" '.[\$item].description' ~/.config/cheatshh/groups.json);
         
-        echo -e \"${CYAN}GROUP DESCRIPTION:${NC}\";
+        echo -e \"${title_color}GROUP DESCRIPTION:${NC}\";
         if [ -n \"\$about\" ]; then
             # fix length of preview to fit within terminal width
             terminal_width=\$(tput cols)
             preview_window_width=\$((terminal_width * 70 / 100))
             text_width=\$((preview_window_width - 4))
             about=\$(echo \"\$about\" | fold -w \$text_width)
-            echo -e \"${YELLOW}\$about${NC}\n\";
+            echo -e \"${about_color}\$about${NC}\n\";
         fi
         group_commands=\$(jq -r --arg item \"\$item\" '.[\$item].commands[]' ~/.config/cheatshh/groups.json);
-        echo -e \"${CYAN}GROUP COMMANDS:${NC} \n\$group_commands\n\";
+        echo -e \"${title_color}GROUP COMMANDS:${NC} \n\$group_commands\n\";
     else
         about=\$(jq -r --arg item \"\$item\" '.[\$item].description' ~/.config/cheatshh/commands.json);
-        echo -e \"${CYAN}ABOUT:${NC}\";
+        echo -e \"${title_color}ABOUT:${NC}\";
         if [ -n \"\$about\" ]; then
             # fix length of preview to fit within terminal width
             terminal_width=\$(tput cols)
             preview_window_width=\$((terminal_width * 70 / 100))
             text_width=\$((preview_window_width - 4))
             about=\$(echo \"\$about\" | fold -w \$text_width)
-            echo -e \"${YELLOW}\$about${NC}\n\";
+            echo -e \"${about_color}\$about${NC}\n\";
         fi
-        echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
-        echo -e \"${CYAN}BOOKMARK:${NC} \$bookmark\n\";
-        echo -e \"${CYAN}TLDR:${NC}\";
+        echo -e \"${title_color}ALIAS:${NC} \$alias\n\";
+        echo -e \"${title_color}BOOKMARK:${NC} \$bookmark\n\";
+        echo -e \"${title_color}TLDR:${NC}\";
         echo \"Please wait while the TLDR page is being searched for...\";
         tldr \$item --color;
         if $display_man; then
-            echo -e \"\n${CYAN}MAN PAGE: ${NC}\n\";
+            echo -e \"\n${title_color}MAN PAGE: ${NC}\n\";
             echo \"Please wait while the MAN page is being searched for...\";
             if [ -z \"$LANG\" ]; then
                 LANG=en_US.UTF-8
@@ -434,7 +442,7 @@ display_preview() {
       "3" "$bookmark_option" 3>&1 1>&2 2>&3)
 
       exitstatus=$?
-      printf "%s" "$selected" | pbcopy
+      printf "%s" "$selected" | $copy_command
       if [ $exitstatus = 0 ]; then
           case $OPTION in
           "1")
@@ -467,23 +475,23 @@ display_group_commands() {
     about=\$(jq -r --arg cmd \"\$cmd\" '.[\$cmd].description' ~/.config/cheatshh/commands.json);
     alias=\$(jq -r --arg cmd \"\$cmd\" '.[\$cmd].alias' ~/.config/cheatshh/commands.json);
     bookmark=\$(jq -r --arg item \"\$cmd\" '.[\$item].bookmark' ~/.config/cheatshh/commands.json);
-    echo -e \"${CYAN}COMMAND: ${YELLOW}\$cmd${NC}\n\";
-    echo -e \"${CYAN}ABOUT:${NC}\";
+    echo -e \"${title_color}COMMAND: ${about_color}\$cmd${NC}\n\";
+    echo -e \"${title_color}ABOUT:${NC}\";
     if [ -n \"\$about\" ]; then
         # fix length of preview to fit within terminal width
         terminal_width=\$(tput cols)
         preview_window_width=\$((terminal_width * 70 / 100))
         text_width=\$((preview_window_width - 4))
         about=\$(echo \"\$about\" | fold -w \$text_width)
-        echo -e \"${YELLOW}\$about${NC}\n\";
+        echo -e \"${about_color}\$about${NC}\n\";
     fi
-    echo -e \"${CYAN}ALIAS:${NC} \$alias\n\";
-    echo -e \"${CYAN}BOOKMARK:${NC} \$bookmark\n\";
-    echo -e \"${CYAN}TLDR:${NC}\n\";
+    echo -e \"${title_color}ALIAS:${NC} \$alias\n\";
+    echo -e \"${title_color}BOOKMARK:${NC} \$bookmark\n\";
+    echo -e \"${title_color}TLDR:${NC}\n\";
     echo \"Please wait while the TLDR page is being searched for...\";
     tldr \$cmd --color;
     if $display_man; then
-        echo -e \"\n${CYAN}MAN PAGE: ${NC}\n\";
+        echo -e \"\n${title_color}MAN PAGE: ${NC}\n\";
         echo \"Please wait while the MAN page is being searched for...\";
         if [ -z \"$LANG\" ]; then
             LANG=en_US.UTF-8
@@ -507,7 +515,7 @@ display_group_commands() {
     "3" "$bookmark_option" 3>&1 1>&2 2>&3)
 
     exitstatus=$?
-    printf "%s" "$selected" | pbcopy
+    printf "%s" "$selected" | $copy_command
     if [ $exitstatus = 0 ]; then
         case $OPTION in
         "1")

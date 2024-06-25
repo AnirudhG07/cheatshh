@@ -1,0 +1,31 @@
+# ~/.config/cheatshh/config.toml
+[settings]
+    copy_command = "pbcopy" # Add the shell command for copying command
+
+    # Display the number of groups in whiptail dialog
+    ## Keep the below number small enough to fit in whiptail dialog, else it may produce error
+    display_group_number = 10 # Recommended
+
+    # Automatically display man pages in preview without using the -m flag
+    man_pages = false # Default
+
+    ## Location of storage of commands.json & groups.json
+    ### PLEASE NOTE: cheats.sh will remain in ~/.config/cheatshh. Do not change it's PATH
+    cheatshh_json = "~/.config/cheatshh" # Default
+
+[color_scheme]
+# # Define color codes, please use the color codes mentioned below(make sure they are supported by your terminal
+# CYAN='\\033[0;36m'
+# YELLOW='\\033[0;33m'
+# RED='\\033[0;31m'
+# GREEN='\\033[0;32m'
+# BLUE='\\033[0;34m'
+# MAGENTA='\\033[0;35m'
+# WHITE='\\033[0;37m'
+# BLACK='\\033[0;30m'
+# PURPLE='\\033[0;35m'
+# ORANGE='\\033[0;33m'
+# If you would like some other color, please add their color code on your own. Thank you!
+
+    title_color = "\\033[0;36m" # Color for the title in preview
+    about_color = "\\033[0;33m" # Color for About and Command/Group name in preview
