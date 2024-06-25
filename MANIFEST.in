@@ -1,3 +1,4 @@
 include cheats.sh
 include commands.json
 include groups.json
+include config.toml

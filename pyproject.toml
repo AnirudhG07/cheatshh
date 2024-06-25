@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "cheatshh"
-version = "1.0.6"
+version = "1.0.7"
 description = "Interactive CLI for managing command line cheatsheets, written in shell script."
 authors = ["Anirudh Gupta"]
 readme = "Pypi_README.md"
@@ -27,6 +27,7 @@ keywords=["cheatsheet", "cheat", "command-line", "CLI", "shell-script"]
 python = "^3.9"
 fuzzyfinder = "^2.0.0"
 whiptail = "^0.2.0"
+yq = "^4.44.2"
 
 [tool.poetry.dev-dependencies]
 

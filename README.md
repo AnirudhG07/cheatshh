@@ -1,6 +1,27 @@
-# cheatshh ![Static Badge](https://img.shields.io/badge/version-1.0.6-blue)
+# cheatshh ![Static Badge](https://img.shields.io/badge/version-1.0.7-blue)
 
-Cheatshh is an interactive CLI meant for managing command line cheatsheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR and MAN pages along with a custom description for the command.
+Cheatshh is an interactive CLI meant for managing command line cheatsheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR(or anyother) and MAN pages along with a custom description for the command.
+
+## Table of Contents
+
+* [Preview/Screenshots ](#previewscreenshots-)
+* [Features](#features)
+* [Installation](#installation)
+  * [Pip Installation](#pip-installation)
+  * [Homebrew Installation](#homebrew-installation)
+  * [Manual Installation through git clone](#manual-installation-through-git-clone)
+    * [For MacOS and Linux](#for-macos-and-linux)
+    * [For Windows](#for-windows)
+* [Libraries and Groups](#libraries-and-groups)
+* [Bookmarking](#bookmarking)
+* [Dependencies](#dependencies)
+* [Cheatshh Configuration](#cheatshh-configuration)
+* [Saving cheatshh](#saving-cheatshh)
+* [Trouble-shooting](#trouble-shooting)
+* [Documentation](#documentation)
+* [Contributing](#contributing)
+    * [Contribution Guidelines](#contribution-guidelines)
+
 
 # Preview/Screenshots 
 
@@ -14,6 +35,7 @@ https://github.com/AnirudhG07/cheatshh/assets/146579014/831405bb-aba4-461f-9ca9-
 - TLDR and MAN pages visible in the preview.
 - Easy to add, edit, delete commands & groups and play around.
 - Bookmark commands to access them outside of group as well.
+- Change configurations like colors, automatic man page display, usages of other cheatsheets like tldr, cheats.sh, etc.
 
 # Installation
 
@@ -140,6 +162,10 @@ sudo apt install <package>
 
 For Windows, you can use your favourite package manager or download from their website itself.
 
+# Cheatshh Configuration
+You can change various configurations of cheatshh like colors, automatic man page display, usages of other cheatsheets like tldr, cheats.sh, etc. You can do this by going to the `cheatshh/config.toml` file and changing the values as per your needs.<br>
+**NOTE:** All the instructions on how to change suitably is mentioned within the file itself. If you are facing any issues, feel free to raise an issue.
+
 # Saving cheatshh
 When you have configured your cheatshh, you would definitely want to save them. If you want to use cheatshh in some different machine without rewriting again(cause that's a lot of trouble). Here's how you can save it.
 1. Make a repository by the name `Your_handle/cheatshh` or any other name. You can also add it to your repo where you are storing your dot files.
@@ -197,7 +223,7 @@ Note: If you are using some other shell like fish or any similar other, configur
  
 # Documentation
 
-Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.6/docs"> docs </a> to see how to use cheatshh.
+Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.7/docs"> docs </a> to see how to use cheatshh.
 
 # Contributing
 

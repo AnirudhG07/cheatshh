@@ -11,18 +11,18 @@ Cheatshh is an interactive CLI meant for managing command line cheatsheets. Now 
 - Easy to add, edit, delete commands and groups and playing around.
 - Press Enter on a command to copy it to clipboard and exit.
 - Bookmark your favourite commands and view them in main preview despite being in a group.
+- Change configurations like colors, automatic man page display, usages of other cheatsheets like tldr, cheats.sh, etc.
 
 Visit the Github Repository for more details: https://github.com/AnirudhG07/cheatshh
 
 # Version
-1.0.6
+1.0.7
 
 ## Note:
 - This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.
 - The package is installed in ~/.config/cheatshh directory.
 
 ## New Features:
-- Now you can bookmark commands and view them in main preview despite being in a group.
-
-## Bugs Fixed:
-- Edit command and group bugs fixed.
+- You can now change various configurations of cheatshh like color_schemes, copy command to use, etc.
+- You can change the cheatsheet tool you are using from tldr(default) to cheats.sh, cheatsheet, bropages, etc.
+- You can automate the display of man pages for commands.

@@ -1,2 +1,4 @@
 fzf
 whiptail 
+yq
+jq
