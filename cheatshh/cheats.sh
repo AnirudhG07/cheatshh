@@ -3,11 +3,11 @@
 NC='\033[0m' # No Color
 export NC
 
-## Read from config.toml
+## Read from cheatshh.toml
 getConfigValue() {
     local section=$1
     local key=$2
-    local config_file="/Volumes/Anirudh/Projects/cheatshh/cheatshh/config.toml"
+    local config_file="~/.config/cheatshh/cheatshh.toml"
 
     # Use awk to parse the config file for the section and key, then print the value
     yq ".$section.$key" "$config_file"
@@ -566,7 +566,7 @@ help_text(){
     echo "Note: 1) Add -m to display the man pages of the commands in addition to tldr(or anyother)."
     echo "2) Press Enter to select a command, which will be copied to your clipboard and exited         "
     echo "3) Bookmark a command by selecting it and pressing 'Bookmark' in the preview window."
-    echo "4) To change minor configuration, edit the ~/.config/cheatshh/config.toml file."
+    echo "4) To change minor configuration, edit the ~/.config/cheatshh/cheatshh.toml file."
     echo "For more information, please visit: https://github.com/AnirudhG07/cheatshhh"
 }
 

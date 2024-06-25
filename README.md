@@ -163,7 +163,7 @@ sudo apt install <package>
 For Windows, you can use your favourite package manager or download from their website itself.
 
 # Cheatshh Configuration
-You can change various configurations of cheatshh like colors, automatic man page display, usages of other cheatsheets like tldr, cheats.sh, etc. You can do this by going to the `cheatshh/config.toml` file and changing the values as per your needs.<br>
+You can change various configurations of cheatshh like colors, automatic man page display, usages of other cheatsheets like tldr, cheats.sh, etc. You can do this by going to the `cheatshh/cheatshh.toml` file and changing the values as per your needs.<br>
 **NOTE:** All the instructions on how to change suitably is mentioned within the file itself. If you are facing any issues, feel free to raise an issue.
 
 # Saving cheatshh

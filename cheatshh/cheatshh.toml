@@ -15,7 +15,7 @@
     man_pages = false # Default: false
 
     ## Location of storage of commands.json & groups.json
-    ### PLEASE NOTE: cheats.sh & config.toml will remain in ~/.config/cheatshh. Do not change it's PATH
+    ### PLEASE NOTE: cheats.sh & cheatshh.toml will remain in ~/.config/cheatshh. Do not change it's PATH
     cheatshh_home = "~/.config/cheatshh" # Default: "~/.config/cheatshh"
 
     ## Other Cheatsheets(predownloaded) you would like to you use Apart from TLDR like cheat.sh, bropages, etc 
