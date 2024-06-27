@@ -19,8 +19,6 @@
     cheatshh_home = "~/.config/cheatshh" # Default: "~/.config/cheatshh"
 
     ## Other Cheatsheets(predownloaded) you would like to you use Apart from TLDR like cheat.sh, bropages, etc 
-    ## Template: `$ notes command_name`
-    notes = "tldr" # DEFAULT: "tldr"
     ## Template: `$ notes command_name`. Color flag is present in TLDR, add suitable flags for any other.
     notes = "tldr --color" # DEFAULT: "tldr --color"
 

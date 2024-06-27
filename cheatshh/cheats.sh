@@ -17,6 +17,10 @@ display_group_number=$(getConfigValue "settings" "display_group_number")
 cheatshh_home=$(getConfigValue "settings" "cheatshh_home")
 cheatshh_json="${cheatshh_home/#\~/$HOME}"
 notes=$(getConfigValue "settings" "notes")
+notes_name=$(echo "${notes}" | awk '{print $1}') # to extract the cheatsheet name like tldr from "tldr --color"
+
+full_display=$(getConfigValue "settings" "full_display")
+preview_width=$(getConfigValue "settings" "preview_width")
 
 title_color=$(getConfigValue "color_scheme" "title_color")
 about_color=$(getConfigValue "color_scheme" "about_color")
@@ -65,10 +69,10 @@ addition(){
       else
         is_alias="no"
         # Check if $notes page for the command exists
-        if ! $notes $new_command --color > /dev/null 2>&1; then
+        if ! $notes $new_command> /dev/null 2>&1; then
           # Check if man page for the command exists
           if ! man $new_command > /dev/null 2>&1; then
-            whiptail --msgbox "Error: Neither man page nor $notes exists for the command: $new_command\nPlease add it as an alias." 8 78 --title "Error" 
+            whiptail --msgbox "Error: Neither man page nor $notes_name exists for the command: $new_command\nPlease add it as an alias." 8 78 --title "Error" 
             continue
           fi
         fi
@@ -318,10 +322,10 @@ create_group() {
       else
         is_alias="no"
         # Check if $notes page for the command exists
-        if ! $notes $new_command --color > /dev/null 2>&1; then
+        if ! $notes $new_command > /dev/null 2>&1; then
           # Check if man page for the command exists
           if ! man $new_command > /dev/null 2>&1; then
-            whiptail --msgbox "Neither man page nor $notes exists for the command: $new_command" 8 78 --title "Error" 
+            whiptail --msgbox "Neither man page nor $notes_name exists for the command: $new_command" 8 78 --title "Error" 
             continue
           fi
         fi
@@ -369,10 +373,66 @@ delete_group() {
   fi
 }
 
+# Extract group_command from group_command/group_name
+extract_command() {
+  local selected_item="$1"
+  local max_index=$(awk -F"/" '{print NF-1}' <<< "$selected_item")
+  local index=1
+  local group_name=""
+  local group_command=""
+  local found=0
+
+  while [ $index -le $max_index ] && [ $found -eq 0 ]; do
+    # Construct group_name by joining parts with /
+    group_name=$(cut -d'/' -f1-$index <<< "$selected_item")
+    # Check if group_name exists in groups.json
+    if jq -e --arg groupName "$group_name" '.[$groupName]' "$cheatshh_json/groups.json" &> /dev/null; then
+      found=1
+      # Extract group_command from the remaining part
+      group_command=$(cut -d'/' -f$((index+1))- <<< "$selected_item")
+    else
+      ((index++))
+    fi
+  done
+
+  if [ $found -eq 1 ]; then
+    echo "$group_command"
+  else
+    echo "$selected_item" # If no group_name found, return the original item
+  fi
+}
+
 display_preview() {
-  commands=$(jq -r 'to_entries[] | select(.value.bookmark == "yes" or (.value.bookmark == "no" and .value.group == "no")) | .key' "$cheatshh_json/commands.json")  groups=$(jq -r 'keys[]' "$cheatshh_json/groups.json")
-  selected=$(echo -e "$commands\n$groups" | fzf --preview "
+  # Fetch commands that are bookmarked or not bookmarked and not part of a group
+  if [ "$full_display" == "on" ]; then
+    while IFS= read -r group_name; do
+        # Step 2: For each group, fetch commands and format them as "group_name/command_name"
+        jq -r --arg group_name "$group_name" '.[$group_name].commands[] | "\($group_name)/\(.)"' "$cheatshh_json/groups.json"
+    done < <(jq -r 'keys[]' "$cheatshh_json/groups.json") > grouped_commands.txt
+
+    # Fetch commands that are not part of any group (assuming commands.json structure and logic for this)
+    commands=$(jq -r 'to_entries[] | select(.value.bookmark == "yes" or (.value.bookmark == "no" and .value.group == "no")) | .key' "$cheatshh_json/commands.json")
+
+    # Fetch all group names (if needed separately)
+    groups=$(jq -r 'keys[]' "$cheatshh_json/groups.json")
+
+    # Combine commands, grouped_commands (from file), and groups
+    display_feat=$(echo -e "$commands\n$groups\n$(cat grouped_commands.txt)")
+  elif [ "$full_display" == "off" ]; then
+      commands=$(jq -r 'to_entries[] | select(.value.bookmark == "yes" or (.value.bookmark == "no" and .value.group == "no")) | .key' "$cheatshh_json/commands.json")  groups=$(jq -r 'keys[]' "$cheatshh_json/groups.json")
+      display_feat=$(echo -e "$commands\n$groups")
+  else 
+      echo "Invalid value for full_display = $full_display in cheatshh.toml. Please set it to either 'on' or 'off'."
+      exit 1
+  fi
+  selected_command=$(echo -e "$display_feat" | fzf --preview "
     item={};
+    if [[ \"\$item\" == */* ]]; then
+      group_name=\$(echo \"\$item\" | cut -d'/' -f1)
+      group_command=\$(echo \"\$item\" | cut -d'/' -f2)
+      item=\$group_command
+    fi
+
     alias=\$(jq -r --arg item \"\$item\" '.[\$item].alias' "$cheatshh_json/commands.json");
     bookmark=\$(jq -r --arg item \"\$item\" '.[\$item].bookmark' "$cheatshh_json/commands.json");
     echo -e \"${title_color}COMMAND/GROUP: ${about_color}\$item${NC}\n\";
@@ -384,7 +444,7 @@ display_preview() {
         if [ -n \"\$about\" ]; then
             # fix length of preview to fit within terminal width
             terminal_width=\$(tput cols)
-            preview_window_width=\$((terminal_width * 70 / 100))
+            preview_window_width=\$((terminal_width * "${preview_width}" / 100))
             text_width=\$((preview_window_width - 4))
             about=\$(echo \"\$about\" | fold -w \$text_width)
             echo -e \"${about_color}\$about${NC}\n\";
@@ -397,16 +457,16 @@ display_preview() {
         if [ -n \"\$about\" ]; then
             # fix length of preview to fit within terminal width
             terminal_width=\$(tput cols)
-            preview_window_width=\$((terminal_width * 70 / 100))
+            preview_window_width=\$((terminal_width * "${preview_width}" / 100))
             text_width=\$((preview_window_width - 4))
             about=\$(echo \"\$about\" | fold -w \$text_width)
             echo -e \"${about_color}\$about${NC}\n\";
         fi
         echo -e \"${title_color}ALIAS:${NC} \$alias\n\";
         echo -e \"${title_color}BOOKMARK:${NC} \$bookmark\n\";
-        echo -e \"${title_color}$(echo "$notes" | tr '[:lower:]' '[:upper:]'):${NC}\";
-        echo \"Please wait while the $(echo "$notes" | tr '[:lower:]' '[:upper:]') page is being searched for...\";
-        $notes \$item --color;
+        echo -e \"${title_color}$(echo "$notes_name" | tr '[:lower:]' '[:upper:]'):${NC}\";
+        echo \"Please wait while the $(echo "$notes_name" | tr '[:lower:]' '[:upper:]') page is being searched for...\";
+        $notes \$item;
         if $display_man; then
             echo -e \"\n${title_color}MAN PAGE: ${NC}\n\";
             echo \"Please wait while the MAN page is being searched for...\";
@@ -415,7 +475,7 @@ display_preview() {
             fi
             man \$cmd | col -b 
         fi
-    fi" --preview-window=right,70%)
+    fi" --preview-window=right,"${preview_width}"%)
   
   # If the user pressed escape, fzf will return an exit status of 130
   if [ $? -eq 130 ]; then
@@ -424,7 +484,8 @@ display_preview() {
   fi
 
   # If a command was selected run it
-  if [ -n "$selected" ]; then
+  if [ -n "$selected_command" ]; then
+    selected=$(extract_command "$selected_command") # Use the function to get the command
     if jq -e --arg item "$selected" '.[$item]' "$cheatshh_json/groups.json" > /dev/null; then
         display_group_commands "$selected"
     else
@@ -480,16 +541,16 @@ display_group_commands() {
     if [ -n \"\$about\" ]; then
         # fix length of preview to fit within terminal width
         terminal_width=\$(tput cols)
-        preview_window_width=\$((terminal_width * 70 / 100))
+        preview_window_width=\$((terminal_width * "${preview_width}" / 100))
         text_width=\$((preview_window_width - 4))
         about=\$(echo \"\$about\" | fold -w \$text_width)
         echo -e \"${about_color}\$about${NC}\n\";
     fi
     echo -e \"${title_color}ALIAS:${NC} \$alias\n\";
     echo -e \"${title_color}BOOKMARK:${NC} \$bookmark\n\";
-    echo -e \"${title_color}$(echo "$notes" | tr '[:lower:]' '[:upper:]'):${NC}\n\";
-    echo \"Please wait while the $(echo "$notes" | tr '[:lower:]' '[:upper:]') page is being searched for...\";
-    $notes \$cmd --color;
+    echo -e \"${title_color}$(echo "$notes_name" | tr '[:lower:]' '[:upper:]'):${NC}\n\";
+    echo \"Please wait while the $(echo "$notes_name" | tr '[:lower:]' '[:upper:]') page is being searched for...\";
+    $notes \$cmd;
     if $display_man; then
         echo -e \"\n${title_color}MAN PAGE: ${NC}\n\";
         echo \"Please wait while the MAN page is being searched for...\";
@@ -497,7 +558,7 @@ display_group_commands() {
             LANG=en_US.UTF-8
         fi
         man \$cmd | col -b 
-    fi" --preview-window=right,70%)
+    fi" --preview-window=right,"${preview_width}"%)
   # If a command was selected run it
 
   if [ -n "$selected" ]; then
