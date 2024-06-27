@@ -1,4 +1,4 @@
-# cheatshh ![Static Badge](https://img.shields.io/badge/version-1.0.7-blue)
+# cheatshh ![Static Badge](https://img.shields.io/badge/version-1.1.1-blue)
 
 Cheatshh is an interactive CLI meant for managing command line cheatsheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR(or anyother) and MAN pages along with a custom description for the command.
 
@@ -120,7 +120,7 @@ Now you should be able to use the tool by running `cheatshh` in your terminal. F
 ## For Windows
 
 For Windows, you can use Virtual Machines of Linux, or change configurations manually.<br>
-> From version >= 1.0.7, the configurations for having `cheatshh` on Windows has greatly been improved. 
+> From version >= 1.1.1, the configurations for having `cheatshh` on Windows has greatly been improved. 
 
 - Change the path to directory `~/.config/cheatshh` to `absolute/path/to/your/directory/cheatshh`, by using grep command in the cheatshh directory, in `cheatshh.toml` and `cheats.sh` only at the one place.
 
@@ -229,7 +229,7 @@ Note: If you are using some other shell like fish or any similar other, configur
  
 # Documentation
 
-Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.7/docs"> docs </a> to see how to use cheatshh.
+Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.1.1/docs"> docs </a> to see how to use cheatshh.
 
 # Check it out
 Check out my Yazi File manager plugin for cheatshh at [cheatshh.yazi](https://github.com/AnirudhG07/cheatshh.yazi). You can save your yazi shell commands and easily access them within Yazi.

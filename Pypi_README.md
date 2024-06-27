@@ -16,7 +16,7 @@ Cheatshh is an interactive CLI meant for managing command line cheatsheets. Now 
 Visit the Github Repository for more details: https://github.com/AnirudhG07/cheatshh
 
 # Version
-1.0.7
+1.1.1
 
 ## Note:
 - This package is best used in Unix based systems, like linux and MacOS. For Windows, see the github repository for more details.
