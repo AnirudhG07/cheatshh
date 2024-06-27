@@ -2,6 +2,8 @@ import os
 import subprocess
 import shutil
 import pkg_resources
+import sys
+import argparse
 
 def post_install():
     try:
@@ -10,7 +12,7 @@ def post_install():
             # If not, create it
             os.makedirs(os.path.expanduser('~/.config/cheatshh'))
             # Copy the files from the package to ~/.config/cheatshh
-            for file_name in ['cheats.sh', 'groups.json', 'commands.json']:
+            for file_name in ['cheats.sh', 'groups.json', 'commands.json', 'cheatshh.toml']:
                 file_path = pkg_resources.resource_filename(__name__, file_name)
                 shutil.copy2(file_path, os.path.expanduser('~/.config/cheatshh/' + file_name))
             # Make cheats.sh executable
@@ -19,8 +21,8 @@ def post_install():
         print("Error: Could not create ~/.config/cheatshh directory. Please retry or report issue to official Github page.")
     return
 
-def cheatshh():
-    subprocess.call([os.path.expanduser('~/.config/cheatshh/cheats.sh')])
+def cheatshh(args):
+    subprocess.call([os.path.expanduser('~/.config/cheatshh/cheats.sh')]+args)
 
 def main():
     """
@@ -29,5 +31,6 @@ def main():
     This function will also create ~/.config/cheatshh directory if it does not exist.
     """
     post_install()
-    cheatshh()
+    cheatshh(sys.argv[1:])
+
     return
