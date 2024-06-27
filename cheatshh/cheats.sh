@@ -624,7 +624,7 @@ help_text(){
     echo "Note: 1) Add -m to display the man pages of the commands in addition to tldr(or anyother)."
     echo "2) Press Enter to select a command, which will be copied to your clipboard and exited         "
     echo "3) Bookmark a command by selecting it and pressing 'Bookmark' in the preview window."
-    echo "4) To change minor configuration, edit the ~/.config/cheatshh/cheatshh.toml file."
+    echo "4) To change various configuration, edit the $HOME/.config/cheatshh/cheatshh.toml file."
     echo "For more information, please visit: https://github.com/AnirudhG07/cheatshhh"
 }
 

@@ -26,3 +26,4 @@ Visit the Github Repository for more details: https://github.com/AnirudhG07/chea
 - You can now change various configurations of cheatshh like color_schemes, copy command to use, etc.
 - You can change the cheatsheet tool you are using from tldr(default) to cheats.sh, cheatsheet, bropages, etc.
 - You can automate the display of man pages for commands.
+- You can configure your main preview with group_name/group_command way to find your command really fast.

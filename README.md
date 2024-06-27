@@ -19,6 +19,7 @@ Cheatshh is an interactive CLI meant for managing command line cheatsheets, writ
 * [Saving cheatshh](#saving-cheatshh)
 * [Trouble-shooting](#trouble-shooting)
 * [Documentation](#documentation)
+* [Check it out](#check-it-out)
 * [Contributing](#contributing)
     * [Contribution Guidelines](#contribution-guidelines)
 
@@ -32,7 +33,7 @@ https://github.com/AnirudhG07/cheatshh/assets/146579014/831405bb-aba4-461f-9ca9-
 - Comprehensive cheatsheets for various command-line utilities and tools.
 - Easy-to-use interface for quickly accessing and executing commands, powered by fuzzy finder(fzf) and whiptail.
 - Customizable cheatsheets and groups to suit your needs.
-- TLDR and MAN pages visible in the preview.
+- TLDR(any more) and MAN pages visible in the preview.
 - Easy to add, edit, delete commands & groups and play around.
 - Bookmark commands to access them outside of group as well.
 - Change configurations like colors, automatic man page display, usages of other cheatsheets like tldr, cheats.sh, etc.
@@ -119,9 +120,9 @@ Now you should be able to use the tool by running `cheatshh` in your terminal. F
 ## For Windows
 
 For Windows, you can use Virtual Machines of Linux, or change configurations manually.<br>
+> From version >= 1.0.7, the configurations for having `cheatshh` on Windows has greatly been improved. 
 
-- Change the path to directory `~/.config/cheatshh` to `/path/to/your/directory/cheatshh`, by using grep command
-  in the cheatshh directory, in `setup.py`,`cheats.sh` and manually setting up `./src/run_cheatshh.py`.
+- Change the path to directory `~/.config/cheatshh` to `absolute/path/to/your/directory/cheatshh`, by using grep command in the cheatshh directory, in `cheatshh.toml` and `cheats.sh` only at the one place.
 
 - This should run cheatshh appropriately. Make sure the dependencies are installed, since they are easily available for Unix applications.
 
@@ -144,9 +145,11 @@ You can bookmark a command by pressing Enter and selecting `Bookmark`. Now you d
 
 Cheatshh uses the following as its main tools. Ensure that these are pre-installed in your computer.
 
-- fuzzy finder
+- fuzzy finder(fzf)
 - whiptail
 - jq
+- yq
+**NOTE:** jq and yq used in the package is the version present in Homebrew. Thus please install that instead of from Pypi.(It didn't work for me.)<br>
 
 In MacOS, you can use HomeBrew to install the above packages with-
 
@@ -188,8 +191,11 @@ OR you can manually set it up, in that case you don't need the above tree, you c
 Don't forget to make `setup.sh` executable.
 
 # Trouble-shooting
+1. If you are facing issues with `jq` and `yq`, please try the following first - 
+- Add ABSOLUTE PATH of your `.config/cheatshh` in the `cheatshh.toml` and `cheats.sh` file as pointed [for Windows](#for-windows)
+- The jq and yq used in the packages is from Homebrew and Pypi yq would not work. So make sure you have that `jq` and `yq` installed.
 
-1. If permission denial error shows up, run the same command using sudo. You will have to provide password in this case.
+2. If permission denial error shows up, run the same command using sudo. You will have to provide password in this case.
 
 ```bash
 sudo <command-name>
@@ -197,7 +203,7 @@ sudo <command-name>
 
 This might be needed in the case for man page display or maybe for installation of dependency.
 
-2. If `WARNING: The script cheatshh is installed in '/home/admin/.local/bin' which is not on PATH.` error comes, then cheatshh script has to be included in the system PATH, you can add the following lines to the appropriate shell configuration.
+3. If `WARNING: The script cheatshh is installed in '/home/admin/.local/bin' which is not on PATH.` error comes, then cheatshh script has to be included in the system PATH, you can add the following lines to the appropriate shell configuration.
 
 - BASH: Add the following at the end of ~/.bashrc
 
@@ -224,6 +230,9 @@ Note: If you are using some other shell like fish or any similar other, configur
 # Documentation
 
 Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.0.7/docs"> docs </a> to see how to use cheatshh.
+
+# Check it out
+Check out my Yazi File manager plugin for cheatshh at [cheatshh.yazi](https://github.com/AnirudhG07/cheatshh.yazi). You can save your yazi shell commands and easily access them within Yazi.
 
 # Contributing
 
