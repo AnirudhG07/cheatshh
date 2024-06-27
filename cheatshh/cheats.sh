@@ -7,18 +7,15 @@ export NC
 getConfigValue() {
     local section=$1
     local key=$2
-    local config_file="~/.config/cheatshh/cheatshh.toml"
+    local config_file="$HOME/.config/cheatshh/cheatshh.toml"
 
-    # Use awk to parse the config file for the section and key, then print the value
     yq ".$section.$key" "$config_file"
-
 }
 copy_command=$(getConfigValue "settings" "copy_command")
 display_man=$(getConfigValue "settings" "man_pages")
 display_group_number=$(getConfigValue "settings" "display_group_number")
 cheatshh_home=$(getConfigValue "settings" "cheatshh_home")
 cheatshh_json="${cheatshh_home/#\~/$HOME}"
-
 notes=$(getConfigValue "settings" "notes")
 
 title_color=$(getConfigValue "color_scheme" "title_color")
@@ -26,10 +23,10 @@ about_color=$(getConfigValue "color_scheme" "about_color")
 
 # function for displaying group names when needed
 get_group_names() {
-  group_names=$(jq -r 'keys[]' $cheatshh_json/groups.json)
+  group_names=$(jq -r 'keys[]' "$cheatshh_json/groups.json")
   group_names=$(echo "$group_names" | head -n $(display_group_number) | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
 
-  if [ $(jq -r 'keys | length' $cheatshh_json/groups.json) -gt $(display_group_number) ]; then
+  if [ $(jq -r 'keys | length' "$cheatshh_json/groups.json") -gt $(display_group_number) ]; then
     group_names="$group_names, ..."
   fi
 
@@ -84,16 +81,16 @@ addition(){
         # Check if the group exists
         if [ "$(jq -r --arg group "$group" '.[$group]' "$cheatshh_json/groups.json")" != "null" ]; then
           # Add the command to the group
-          jq --arg group "$group" --arg cmd "$new_command" '.[$group].commands += [$cmd]' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+          jq --arg group "$group" --arg cmd "$new_command" '.[$group].commands += [$cmd]' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
           # Update the commands.json file
-          jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "yes", "bookmark": "no"}' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+          jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "yes", "bookmark": "no"}' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
         else
           whiptail --msgbox "Group does not exist: $group" 8 78 --title "Error" 
           continue
         fi
     else
         # If not added to a group, update the commands.json file with group as "no"
-        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
     fi
 
     break
@@ -119,7 +116,7 @@ deletion_command() {
     # If the command is not in any group, ask for confirmation before deleting
     if (whiptail --yesno "Are you sure you want to delete the command: $cmd_name?" 8 78 --title "Confirmation"); then
       # Delete the command
-      jq --arg cmd "$cmd_name" 'del(.[$cmd])' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+      jq --arg cmd "$cmd_name" 'del(.[$cmd])' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
     fi
   else
     # Get the list of group names
@@ -136,7 +133,7 @@ deletion_command() {
     fi
 
     # Delete the command from the group
-    jq --arg group "$group_name" --arg cmd "$cmd_name" '(.[$group].commands[] | select(. == $cmd)) = null | del(.[$group].commands[] | nulls)' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+    jq --arg group "$group_name" --arg cmd "$cmd_name" '(.[$group].commands[] | select(. == $cmd)) = null | del(.[$group].commands[] | nulls)' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
   fi
 }
 ### EDITING ###
@@ -192,9 +189,9 @@ edit_command(){
       # Check if the command already exists in the group
       if jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands | index($cmd)' "$cheatshh_json/groups.json" | grep -q null; then
         # Update the group of the command in the commands.json file
-        jq --arg cmd "$edit_command" --arg group "$new_group" '(.[$cmd].group) = $group' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+        jq --arg cmd "$edit_command" --arg group "$new_group" '(.[$cmd].group) = $group' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
         # Add the command to the new group in the groups.json file
-        jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands += [$cmd]' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+        jq --arg group "$new_group" --arg cmd "$edit_command" '.[$group].commands += [$cmd]' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
       else
         whiptail --msgbox "Command already exists in the group! Please recheck the group you want it to add in." 8 78 --title "Error" 
         continue
@@ -244,7 +241,7 @@ edit_group() {
                 # Update the group name in the JSON file
                 jq --arg group "$group_name" --arg newGroup "$new_group_name" '
                   .[$newGroup] = .[$group] | 
-                  del(.[$group])' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+                  del(.[$group])' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
                 ;;
             2)
                 # Get the current group description
@@ -256,7 +253,7 @@ edit_group() {
                 exitstatus=$?
                 if [ $exitstatus = 0 ]; then
                     # Update the group description in the JSON file
-                    jq --arg group "$group_name" --arg newDesc "$new_group_description" '(.[$group].description = $newDesc)' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+                    jq --arg group "$group_name" --arg newDesc "$new_group_description" '(.[$group].description = $newDesc)' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
                 fi
                 ;;
             esac
@@ -294,7 +291,7 @@ create_group() {
   fi
 
   # Add the group to the groups.json file with the description
-  jq --arg group "$group_name" --arg desc "$group_description" '.[$group] = {"description": $desc, "commands": []}' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+  jq --arg group "$group_name" --arg desc "$group_description" '.[$group] = {"description": $desc, "commands": []}' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
 
   # Ask the user if they want to add a command to the group
   if whiptail --yesno "Do you want to add a command to the group?" 8 78 --title "Add Command to Group"; then  
@@ -317,7 +314,7 @@ create_group() {
         is_alias="yes"
         description=$(whiptail --inputbox "Enter description for the command: (use '\ n' for new line)" 8 78 --title "Add Command Description" 3>&1 1>&2 2>&3)
         # Update the commands.json file
-        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
       else
         is_alias="no"
         # Check if $notes page for the command exists
@@ -330,7 +327,7 @@ create_group() {
         fi
         description=$(whiptail --inputbox "Enter description for the command: (use '\ n' for new line)" 8 78 --title "Add Command Description" 3>&1 1>&2 2>&3)
         # Update the commands.json file
-        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+        jq --arg cmd "$new_command" --arg desc "$description" --arg alias "$is_alias" '.[$cmd] = {"description": $desc, "alias": $alias, "group": "no", "bookmark": "no"}' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
       fi
     break
     done
@@ -358,12 +355,12 @@ delete_group() {
     group_commands=$(jq -r --arg group "$group_name" '.[$group].commands[]' "$cheatshh_json/groups.json")
 
     # Delete the group
-    jq --arg group "$group_name" 'del(.[$group])' "$cheatshh_json/groups.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/groups.json"
+    jq --arg group "$group_name" 'del(.[$group])' "$cheatshh_json/groups.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/groups.json"
 
     # Delete the commands in the group from commands.json, unless they are also in another group
     for cmd in $group_commands; do
       if ! jq -r --arg cmd "$cmd" 'to_entries[] | select(.value.commands[] == $cmd) | .key' "$cheatshh_json/groups.json" | grep -q .; then
-        jq --arg cmd "$cmd" 'del(.[$cmd])' "$cheatshh_json/commands.json" > ~/.config/cheatshh/temp.json && mv ~/.config/cheatshh/temp.json "$cheatshh_json/commands.json"
+        jq --arg cmd "$cmd" 'del(.[$cmd])' "$cheatshh_json/commands.json" > "$cheatshh_json/temp.json" && mv "$cheatshh_json/temp.json" "$cheatshh_json/commands.json"
       fi
     done
 

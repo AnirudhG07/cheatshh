@@ -27,7 +27,6 @@ keywords=["cheatsheet", "cheat", "command-line", "CLI", "shell-script"]
 python = "^3.9"
 fuzzyfinder = "^2.0.0"
 whiptail = "^0.2.0"
-yq = "^4.44.2"
 
 [tool.poetry.dev-dependencies]
 
