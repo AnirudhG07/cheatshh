@@ -21,6 +21,14 @@
     ## Other Cheatsheets(predownloaded) you would like to you use Apart from TLDR like cheat.sh, bropages, etc 
     ## Template: `$ notes command_name`
     notes = "tldr" # DEFAULT: "tldr"
+    ## Template: `$ notes command_name`. Color flag is present in TLDR, add suitable flags for any other.
+    notes = "tldr --color" # DEFAULT: "tldr --color"
+
+    ## Allow full display of commands with groups in the fzf - ("on"/"off"). Example group_name/group_command
+    full_display = "on" # Default: "on"
+
+    ## Preview width - Changing the width of the preview window. It is recommended to not change this.
+    preview_width = 70 # Default: 70
 
 [color_scheme]
 
