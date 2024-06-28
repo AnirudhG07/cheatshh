@@ -28,9 +28,9 @@ about_color=$(getConfigValue "color_scheme" "about_color")
 # function for displaying group names when needed
 get_group_names() {
   group_names=$(jq -r 'keys[]' "$cheatshh_json/groups.json")
-  group_names=$(echo "$group_names" | head -n $(display_group_number) | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
+  group_names=$(echo "$group_names" | head -n $display_group_number | tr '\n' ',' | sed 's/,$//' | sed 's/,/, /g')
 
-  if [ $(jq -r 'keys | length' "$cheatshh_json/groups.json") -gt $(display_group_number) ]; then
+  if [ $(jq -r 'keys | length' "$cheatshh_json/groups.json") -gt $display_group_number ]; then
     group_names="$group_names, ..."
   fi
 
@@ -517,10 +517,10 @@ display_preview() {
               bookmark=$(jq -r --arg cmd "$selected" '.[$cmd].bookmark' "$cheatshh_json/commands.json")
               if [ "$bookmark" = "yes" ]; then
                   # If it is, remove the bookmark
-                  jq --arg cmd "$selected" '.[$cmd].bookmark = "no"' "$cheatshh_json/commands.json" > /tmp/commands.json && mv /tmp/commands.json "$cheatshh_json/commands.json"
+                  jq --arg cmd "$selected" '.[$cmd].bookmark = "no"' "$cheatshh_json/commands.json" > "$cheatshh_json/tmp/commands.json" && mv "$cheatshh_json/tmp/commands.json" "$cheatshh_json/commands.json"
               else
                   # If it isn't, add the bookmark
-                  jq --arg cmd "$selected" '.[$cmd].bookmark = "yes"' "$cheatshh_json/commands.json" > /tmp/commands.json && mv /tmp/commands.json "$cheatshh_json/commands.json"
+                  jq --arg cmd "$selected" '.[$cmd].bookmark = "yes"' "$cheatshh_json/commands.json" > "$cheatshh_json/tmp/commands.json" && mv "$cheatshh_json/tmp/commands.json" "$cheatshh_json/commands.json"
               fi
               ;;
           esac
@@ -590,10 +590,10 @@ display_group_commands() {
             bookmark=$(jq -r --arg cmd "$selected" '.[$cmd].bookmark' "$cheatshh_json/commands.json")
             if [ "$bookmark" = "yes" ]; then
                 # If it is, remove the bookmark
-                jq --arg cmd "$selected" '.[$cmd].bookmark = "no"' "$cheatshh_json/commands.json" > /tmp/commands.json && mv /tmp/commands.json "$cheatshh_json/commands.json"
+                jq --arg cmd "$selected" '.[$cmd].bookmark = "no"' "$cheatshh_json/commands.json" > "$cheatshh_json/tmp/commands.json" && mv "$cheatshh_json/tmp/commands.json" "$cheatshh_json/commands.json"
             else
                 # If it isn't, add the bookmark
-                jq --arg cmd "$selected" '.[$cmd].bookmark = "yes"' "$cheatshh_json/commands.json" > /tmp/commands.json && mv /tmp/commands.json "$cheatshh_json/commands.json"
+                jq --arg cmd "$selected" '.[$cmd].bookmark = "yes"' "$cheatshh_json/commands.json" > "$cheatshh_json/tmp/commands.json" && mv "$cheatshh_json/tmp/commands.json" "$cheatshh_json/commands.json"
             fi
             ;;
         esac
