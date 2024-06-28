@@ -1,6 +1,9 @@
 # cheatshh ![Static Badge](https://img.shields.io/badge/version-1.1.1-blue)
 
 Cheatshh is an interactive CLI meant for managing command line cheatsheets, written in shell script. Now you don't have to remember CLI commands and just refer your cheatsheet. You can group commands and view their TLDR(or anyother) and MAN pages along with a custom description for the command.
+<br>
+
+> **Note:** This software is tested on and initially configured for MacOS. Please check out the [configuration documentation] to set it up for your system.
 
 ## Table of Contents
 
