@@ -29,7 +29,7 @@ Cheatshh is an interactive CLI meant for managing command line cheatsheets, writ
 
 # Preview/Screenshots 
 
-https://github.com/AnirudhG07/cheatshh/assets/146579014/831405bb-aba4-461f-9ca9-e0f75d74155d
+https://github.com/AnirudhG07/cheatshh/assets/146579014/d064f201-2b2f-46b3-a341-7b913646e4ef
 
 # Features
 
