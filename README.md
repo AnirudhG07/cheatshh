@@ -68,14 +68,14 @@ and you are done. Use various options to add, edit and delete commands and group
 This tool can also be installed using Homebrew(for MacOS only). You can install it by tapping my homebrew-tap repo and installing the tool.
 
 ```bash
-brew tap AnirudhG07/AnirudhG07
-brew install cheatshh
+brew install AnirudhG07/AnirudhG07/cheatshh 
 ```
 
 You can now run the tool by running `cheatshh -h` in your terminal. If you are facing issues, try running-
 
 ```bash
-brew install AnirudhG07/AnirudhG07/cheatshh # After tapping the repo
+brew tap AnirudhG07/AnirudhG07
+brew install cheatshh
 ```
 
 Make sure you have Homebrew installed in your MacOS and it is updated which can be done by running `brew update`.
