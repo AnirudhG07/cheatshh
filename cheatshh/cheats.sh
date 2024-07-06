@@ -601,6 +601,49 @@ display_group_commands() {
   fi
 }
 
+options(){
+OPTIONS=("1" "Add command"
+         "2" "Add group"
+         "3" "Edit Command"
+         "4" "Edit group"
+         "5" "Delete Command"
+         "6" "Delete group")
+
+# Use whiptail to present the options and capture the choice
+CHOICE=$(whiptail --title "Menu" --menu "Choose an option" 15 60 6 \
+"1" "Add command" \
+"2" "Add group" \
+"3" "Edit Command" \
+"4" "Edit group" \
+"5" "Delete Command" \
+"6" "Delete group" 3>&1 1>&2 2>&3)
+
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
+    # Output based on the choice
+    case $CHOICE in
+        1)
+            addition
+            ;;
+        2)
+            create_group
+            ;;
+        3)
+            edit_command
+            ;;
+        4)
+            edit_group
+            ;;
+        5)
+            deletion_command
+            ;;
+        6)
+            delete_group
+            ;;
+    esac
+fi
+}
+
 enter_loop=true
 
 help_text(){
@@ -615,6 +658,7 @@ help_text(){
     echo "  -g, --group        Create a new group"
     echo "  -eg, --edit-group Edit an existing group's name or description in the cheatsheet"
     echo "  -dg, --delete-group Delete an existing group and it's sub commands from commands.json file"
+    echo "  -o, --options      Display a menu to add, edit, or delete commands and groups"
     echo "  -m, --man          Display man pages"
     echo " "
     echo "META OPTIONS"
@@ -649,6 +693,9 @@ case "$@" in
     ;;
   *'-dg'*|*'--delete-group'*)
     delete_group
+    ;;
+  *'-o'*|*'--options'*)
+    options
     ;;
   *'-v'*|*'--version'*)
     echo "cheatshh --version 1.1.1"
