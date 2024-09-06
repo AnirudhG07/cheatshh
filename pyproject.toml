@@ -28,6 +28,7 @@ python = "^3.9"
 fuzzyfinder = "^2.0.0"
 whiptail = "^0.2.0"
 setuptools = "^70.1.0"
+fzf-bin = "^0.55.0"
 
 [tool.poetry.dev-dependencies]
 
