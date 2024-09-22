@@ -235,7 +235,7 @@ Note: If you are using some other shell like fish or any similar other, configur
 Cheatshh is an interactive, easy CLI tool to maintain your custom cheatsheets. You can check our the <a href="https://github.com/AnirudhG07/cheatshh/tree/1.1.1/docs"> docs </a> to see how to use cheatshh.
 
 # Check it out
-Check out my Yazi File manager plugin for cheatshh at [cheatshh.yazi](https://github.com/AnirudhG07/cheatshh.yazi). You can save your yazi shell commands and easily access them within Yazi.
+Check out my Yazi File manager plugin for cheatshh at [cheatshh.yazi](https://github.com/AnirudhG070/plugins-yazi/tree/main/cheatshh.yazi). You can save your yazi shell commands and easily access them within Yazi.
 
 # Contributing
 
