@@ -1,0 +1,85 @@
+version = 1
+revision = 1
+requires-python = ">=3.9, <4"
+resolution-markers = [
+    "python_full_version >= '3.10'",
+    "python_full_version < '3.10'",
+]
+
+[[package]]
+name = "cheatshh"
+version = "1.1.1"
+source = { editable = "." }
+dependencies = [
+    { name = "fuzzyfinder", version = "2.2.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
+    { name = "fuzzyfinder", version = "2.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+    { name = "fzf-bin" },
+    { name = "setuptools" },
+    { name = "whiptail" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "fuzzyfinder", specifier = ">=2.2.0" },
+    { name = "fzf-bin", specifier = ">=0.55.0" },
+    { name = "setuptools", specifier = ">=80.9.0" },
+    { name = "whiptail", specifier = ">=0.2" },
+]
+
+[package.metadata.requires-dev]
+dev = []
+
+[[package]]
+name = "fuzzyfinder"
+version = "2.2.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.10'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e1/2b/653ded7c1b2110eb576b692ae619ea1b29d7e3446e513685968a5f3b2bec/fuzzyfinder-2.2.0.tar.gz", hash = "sha256:b7699fca41230241c5312dff624029a10e40cc7f695e44290b8f2e8e070c4bb4", size = 13937 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/f9/e38ecd7ac5bbfb175c6b6aec9ae2c893caede8dd6e21dd71b316b9005ee7/fuzzyfinder-2.2.0-py3-none-any.whl", hash = "sha256:1c60e5225bf435646e87eec3ef3d5bd094c5d5a4e4d069d0a4a07d515e990035", size = 14970 },
+]
+
+[[package]]
+name = "fuzzyfinder"
+version = "2.3.0"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.10'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3c/16/27e312d2b4bdb9f5101b68031048d790edd348a31ee80c3f77066c04d311/fuzzyfinder-2.3.0.tar.gz", hash = "sha256:3d2de6650852fdf3da896917b2fe88550d854dda590de5f239c2899f7eaf20df", size = 78588 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/c3/e64d5e277373e93b75d9711e46dd7903887e8efa8ecc033e2c5df760e309/fuzzyfinder-2.3.0-py3-none-any.whl", hash = "sha256:4ee35618ca6e1562a235d0f40f594b36ae374e55650a251d52add353b7e3f215", size = 19303 },
+]
+
+[[package]]
+name = "fzf-bin"
+version = "0.55.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4a/b0/135e0ecfe434febea4af0cd271537438a1bd8965213df87483f0070b10a5/fzf_bin-0.55.0.tar.gz", hash = "sha256:d3efab2250b458e2069194a1b3eeaaa54d5e1399039a2204f4a41109c61b0fd3", size = 300158 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5f/2f/8038988f90955621f4dd4df352eb0b1538fcfea47f237e71ce69baf29b36/fzf_bin-0.55.0-py3-none-macosx_10_7_x86_64.whl", hash = "sha256:5e9a5df8f9545e0f607e26887610f53b935e797aca00fc378d0a7f7401ba525f", size = 1706797 },
+    { url = "https://files.pythonhosted.org/packages/e6/66/56b03f85ba1c011aab0f46f54af55ce71ccebaf8056ef377909dba2d9bde/fzf_bin-0.55.0-py3-none-macosx_11_0_arm64.whl", hash = "sha256:791cc373723e015f8e83efb56790343764b4709fb9f75fb95222897e4d44376d", size = 1620558 },
+    { url = "https://files.pythonhosted.org/packages/9e/44/3dc14da8733dac895c8db3e0df6a4a08cb1c45764dc79ecf0fe877d125e8/fzf_bin-0.55.0-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.musllinux_1_1_aarch64.whl", hash = "sha256:73d2e8222ddac2636e026e5578a3805c56d0a09be0d82000122362adb0365277", size = 1562711 },
+    { url = "https://files.pythonhosted.org/packages/2b/46/1a63f22b0640737b690c9c52784b603e1669ce953476e8dfa64edb28c1f8/fzf_bin-0.55.0-py3-none-manylinux2014_ppc64le.manylinux_2_17_ppc64le.musllinux_1_1_ppc64le.whl", hash = "sha256:4d9716b154f1c11de66a7d1aba897c19732f3d7af821c61ac0b05ea7bc123038", size = 1569541 },
+    { url = "https://files.pythonhosted.org/packages/e4/26/a4640def208e7a22925480a3fb4cd5c651576cfb09313d060a3c5a7cce49/fzf_bin-0.55.0-py3-none-manylinux2014_s390x.manylinux_2_17_s390x.musllinux_1_1_s390x.whl", hash = "sha256:54110ed1abcf3f7da2b8b5549d810936c039eddb0fa71d2fed8c483559c4815f", size = 1662169 },
+    { url = "https://files.pythonhosted.org/packages/0e/c8/81f93ac8c56b06ecc4a6584b1392ad58d729370fc1b8f1b1da47112c6165/fzf_bin-0.55.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.musllinux_1_1_x86_64.whl", hash = "sha256:8c2126b7f8eee37d92dc58c4ce4f56123797b4c73d6b668ca5aa5eb6207d8bc2", size = 1683236 },
+    { url = "https://files.pythonhosted.org/packages/dc/3b/3835b9ad1638421586d2a297be852a1fc3dcf3697a12a40db66362450e53/fzf_bin-0.55.0-py3-none-win_amd64.whl", hash = "sha256:af948496a32719673d5a21a517cf594df9de6fbb1c723d60bc58d5d1dc320b94", size = 1847466 },
+    { url = "https://files.pythonhosted.org/packages/45/70/c35d51cd7186b05b31d7c4f8f67aadeee4c5912de42eb98124b2f2635d7f/fzf_bin-0.55.0-py3-none-win_arm64.whl", hash = "sha256:aab3ee964df0642b04abd5830e79f493a7878b4566d807bcafa06d449a794255", size = 1697411 },
+]
+
+[[package]]
+name = "setuptools"
+version = "80.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/18/5d/3bf57dcd21979b887f014ea83c24ae194cfcd12b9e0fda66b957c69d1fca/setuptools-80.9.0.tar.gz", hash = "sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c", size = 1319958 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a3/dc/17031897dae0efacfea57dfd3a82fdd2a2aeb58e0ff71b77b87e44edc772/setuptools-80.9.0-py3-none-any.whl", hash = "sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922", size = 1201486 },
+]
+
+[[package]]
+name = "whiptail"
+version = "0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/d8/626aed6dcc059f3586f608a665954d698d224e31c448daaae8a294bbac55/whiptail-0.2.tar.gz", hash = "sha256:c3bd05674c8c22b92a0da47f0bb6cfd2da0601e69bd09b3077c92a19d8853c09", size = 3472 }

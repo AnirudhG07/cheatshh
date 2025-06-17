@@ -1,14 +1,22 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
 name = "cheatshh"
 version = "1.1.1"
 description = "Interactive CLI for managing command line cheatsheets, written in shell script."
-authors = ["Anirudh Gupta"]
+authors = [{ name = "Anirudh Gupta" }]
+requires-python = "~=3.9"
 readme = "Pypi_README.md"
-classifiers=[
+keywords = [
+    "cheatsheet",
+    "cheat",
+    "command-line",
+    "CLI",
+    "shell-script",
+]
+classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
@@ -20,17 +28,18 @@ classifiers=[
     "Operating System :: POSIX",
     "Operating System :: MacOS",
 ]
-homepage = "https://github.com/AnirudhG07/cheatshh"
-keywords=["cheatsheet", "cheat", "command-line", "CLI", "shell-script"]
+dependencies = [
+    "fuzzyfinder>=2.2.0",
+    "fzf-bin>=0.55.0",
+    "setuptools>=80.9.0",
+    "whiptail>=0.2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-fuzzyfinder = "^2.0.0"
-whiptail = "^0.2.0"
-setuptools = "^70.1.0"
-fzf-bin = "^0.55.0"
+[project.urls]
+Homepage = "https://github.com/AnirudhG07/cheatshh"
 
-[tool.poetry.dev-dependencies]
-
-[tool.poetry.scripts]
+[project.scripts]
 cheatshh = "cheatshh.main:main"
+
+[dependency-groups]
+dev = []
